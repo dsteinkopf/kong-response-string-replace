@@ -3,6 +3,8 @@ local replacements = require "kong.plugins.kong-response-string-replace.replacem
 
 local is_content_type = replacements.is_content_type
 local transform_body = replacements.transform_body
+local matches_one_of = replacements.matches_one_of
+local tansform_headers = replacements.tansform_headers
 
 local HttpFilterHandler = BasePlugin:extend()
 
@@ -20,16 +22,20 @@ end
 function HttpFilterHandler:header_filter(conf)
   HttpFilterHandler.super.header_filter(self)
 
-  if is_content_type(ngx.header["content-type"], conf.content_types) then
+  local content_type_matches = is_content_type(ngx.header["content-type"], conf.content_types)
+  local uri_matches = matches_one_of(ngx.var.uri, conf.uri_patterns)
+
+  if content_type_matches or uri_matches then
     ngx.header["content-length"] = nil
-    ngx.ctx.response_is_matched_content_type = true
+    tansform_headers(ngx.header, conf.header_replace_patterns)
+    ngx.ctx.do_transformation = true
   end
 end
 
 function HttpFilterHandler:body_filter(conf)
   HttpFilterHandler.super.body_filter(self)
 
-  if ngx.ctx.response_is_matched_content_type then
+  if ngx.ctx.do_transformation then
     local chunk, eof = ngx.arg[1], ngx.arg[2]
     local ctx = ngx.ctx
 
@@ -37,7 +43,7 @@ function HttpFilterHandler:body_filter(conf)
     ctx.rt_body_chunk_number = ctx.rt_body_chunk_number or 1
 
     if eof then
-      local transformed_body = transform_body(conf.replace_patterns, table.concat(ctx.rt_body_chunks))
+      local transformed_body = transform_body(conf.body_replace_patterns, table.concat(ctx.rt_body_chunks))
       ngx.arg[1] = transformed_body
     else
       ctx.rt_body_chunks[ctx.rt_body_chunk_number] = chunk

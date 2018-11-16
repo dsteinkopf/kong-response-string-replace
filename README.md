@@ -42,14 +42,42 @@ So it is handled after ip-restriction, bot-detection, cors and after [kong-http-
 
 ## Configuration
 
-* `content_types`: List of content type the replacements should be done on. 
-  No charset. E.g. `text/html`.
-  Should not be empty as no replacements would be done at all then.
-* `replace_patterns`: List of pattern/replacement pairs, seperated by `###`. 
-  Patterns are Lua patterns.
-  E.g. `my ugly text###my nice text`, `https%:%/%/internal%-server%.local%:8888###https://external-server.my.tld`
+* `content_types`: 
+    * _type_: list of strings
+    * _default value_: empty
+    * _example_: `text/html`
+    * List of content types the replacements should be done on. 
+        Exact match (not pattern patch) is done without charset part of content type.
+        
+* `uri_patterns`: 
+    * _type_: list of strings
+    * _default value_: empty
+    * _example_: `%.html$`
+    * List of patterns that match URIs of requests where the replacements shall be done.
+     
+* `body_replace_patterns`:
+    * _type_: list of strings formed `PATTERN###REPLACEMENT`
+    * _default value_: empty (= no body replacements to be done)
+    * _example_: `my ugly text###my nice text`, `https%:%/%/internal%-server%.local%:8888###https://external-server.my.tld`
+    * List of pattern/replacement pairs. 
+        Patterns are Lua patterns. 
+        So they are case sensitive. 
+        Spaces are _not_ ignored. 
+        Remember to quote special characters like `.`.
+* `header_replace_patterns`:
+    * _type_: list of strings formed `HEADERNAME:PATTERN###REPLACEMENT`
+    * _default value_: empty (= no header replacements to be done)
+    * _example_: `Set-Cookie:internal%-server%.local###external-server.my.tld`, `Server:Apache.*$###HiddenServerName`
+    * List of header name/pattern/replacement groups. 
+        Patterns are Lua patterns. 
+        So they are case sensitive.
+        Spaces are _not_ ignored. 
+        Remember to quote special characters like `.`.
+        Header names must match exactly - case sensitive.
 
-Raise an issue if there's anything more you'd like to see.
+Note: Replacements (on headers and body) are done on all requests
+that match either the content_types _or_ the replace_uri_patterns.
+So they should not be both empty. 
 
 ## Misc
 

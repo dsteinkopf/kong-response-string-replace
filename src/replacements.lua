@@ -34,4 +34,23 @@ function _M.transform_body(replace_patterns, body)
     return body
 end
 
+function _M.matches_one_of(uri, uri_patterns)
+    for _, uri_pattern in ipairs(uri_patterns) do
+        if string.find(uri, uri_pattern) then
+            return true
+        end
+    end
+
+    return false
+end
+
+function _M.tansform_headers(headers, header_replace_patterns)
+    for _, header_replace_pattern in ipairs(header_replace_patterns) do
+        local header_name, pattern, replace = header_replace_pattern:match("^(.+):(.+)###(.*)$")
+        if ngx.header[header_name] then
+            ngx.header[header_name] = string.gsub(ngx.header[header_name], pattern, replace)
+        end
+    end
+end
+
 return _M
