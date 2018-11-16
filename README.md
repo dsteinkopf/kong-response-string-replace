@@ -1,6 +1,7 @@
 # kong-response-string-replace
 
-A Kong plugin for string replacements in the response stream
+A Kong plugin for string replacements in the response stream.
+This could be useful e.g. to replace internal by external URLs.
 
 ## Installation
 
@@ -41,7 +42,12 @@ So it is handled after ip-restriction, bot-detection, cors and after [kong-http-
 
 ## Configuration
 
-* tbd
+* `content_types`: List of content type the replacements should be done on. 
+  No charset. E.g. `text/html`.
+  Should not be empty as no replacements would be done at all then.
+* `replace_patterns`: List of pattern/replacement pairs, seperated by `###`. 
+  Patterns are Lua patterns.
+  E.g. `my ugly text###my nice text`, `https%:%/%/internal%-server%.local%:8888###https://external-server.my.tld`
 
 Raise an issue if there's anything more you'd like to see.
 
