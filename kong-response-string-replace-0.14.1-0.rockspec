@@ -2,7 +2,7 @@ package = "kong-response-string-replace"
 version = "0.14.1-0"
 source = {
     url = "git://github.com/dsteinkopf/kong-response-string-replace",
-    branch = "main"
+    branch = "master"
 }
 description = {
     summary = "A Kong plugin for string replacements in the response stream.",
