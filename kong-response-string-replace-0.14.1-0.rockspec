@@ -19,5 +19,6 @@ build = {
     modules = {
     ["kong.plugins.kong-response-string-replace.handler"] = "src/handler.lua",
     ["kong.plugins.kong-response-string-replace.schema"] = "src/schema.lua",
+    ["kong.plugins.kong-response-string-replace.replacements"] = "src/replacements.lua",
     }
 }

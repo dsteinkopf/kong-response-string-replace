@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="de-DE" prefix="og: http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="profile" href="http://gmpg.org/xfn/11">
+    <link rel="pingback" href="https://my-internal.server:9999//xmlrpc.php">
+    <title>PlantText: Diagramme aus Text generieren - nerdblog</title>
+
+    <!-- This site is optimized with the Yoast SEO plugin v9.1 - https://yoast.com/wordpress/plugins/seo/ -->
+    <meta name="description" content="Mit PlantText kann man via Text Diagramme generieren. Hier kann man das ausprobieren und live editieren. Es gibt viele Integrationen in verbreitet Tools."/>
+    <link rel="canonical" href="https://my-internal.server:9999//2018/11/planttext-diagramme/" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="PlantText: Diagramme aus Text generieren - nerdblog" />
+    <meta property="og:description" content="Mit PlantText kann man via Text Diagramme generieren. Hier kann man das ausprobieren und live editieren. Es gibt viele Integrationen in verbreitet Tools." />
+    <meta property="og:url" content="https://my-internal.server:9999//2018/11/planttext-diagramme/" />
+    <meta property="og:site_name" content="nerdblog" />
+    <meta property="article:publisher" content="https://www.facebook.com/dirksnerdblog/" />
+    <meta property="article:tag" content="confluence" />
+    <meta property="article:tag" content="dev" />
+    <meta property="article:tag" content="dev-tool" />
+    <meta property="article:tag" content="diagramme" />
+    <meta property="article:tag" content="internet-service" />
+    <meta property="article:tag" content="uml" />
+    <meta property="article:section" content="Know-How" />
+    <meta property="article:published_time" content="2018-11-02T07:05:56+00:00" />
+    <meta property="og:image" content="https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel.png" />
+    <meta property="og:image:secure_url" content="https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel.png" />
+    <meta property="og:image:width" content="926" />
+    <meta property="og:image:height" content="350" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:description" content="Mit PlantText kann man via Text Diagramme generieren. Hier kann man das ausprobieren und live editieren. Es gibt viele Integrationen in verbreitet Tools." />
+    <meta name="twitter:title" content="PlantText: Diagramme aus Text generieren - nerdblog" />
+    <meta name="twitter:image" content="https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel.png" />
+    <!-- / Yoast SEO plugin. -->
+
+    <link rel='dns-prefetch' href='//nerdblog.steinkopf.net/s.w.org' />
+    <link rel="alternate" type="application/rss+xml" title="nerdblog &raquo; Feed" href="https://my-internal.server:9999//feed/" />
+    <link rel="alternate" type="application/rss+xml" title="nerdblog &raquo; Kommentar-Feed" href="https://my-internal.server:9999//comments/feed/" />
+    <link rel="alternate" type="application/rss+xml" title="nerdblog &raquo; PlantText: Diagramme aus Text generieren Kommentar-Feed" href="https://my-internal.server:9999//2018/11/planttext-diagramme/feed/" />
+    <script type="text/javascript">
+        window._wpemojiSettings = {"baseUrl":"https://my-internal.server:9999//s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https://my-internal.server:9999//s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/nerdblog.steinkopf.net\/wp-includes\/js\/wp-emoji-release.min.js?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb"}};
+        !function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+    </script>
+    <style type="text/css">
+        img.wp-smiley,
+        img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link rel='stylesheet' id='dashicons-css'  href='https://my-internal.server:9999//wp-includes/css/dashicons.min.css?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb' type='text/css' media='all' />
+    <link rel='stylesheet' id='admin-bar-css'  href='https://my-internal.server:9999//wp-includes/css/admin-bar.min.css?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb' type='text/css' media='all' />
+    <link rel='stylesheet' id='ccchildpagescss-css'  href='https://my-internal.server:9999//wp-content/plugins/cc-child-pages/includes/css/styles.css?ver=1.36' type='text/css' media='all' />
+    <link rel='stylesheet' id='ccchildpagesskincss-css'  href='https://my-internal.server:9999//wp-content/plugins/cc-child-pages/includes/css/skins.css?ver=1.36' type='text/css' media='all' />
+    <!--[if lt IE 8]>
+    <link rel='stylesheet' id='ccchildpagesiecss-css'  href='https://my-internal.server:9999//wp-content/plugins/cc-child-pages/includes/css/styles.ie.css?ver=1.36' type='text/css' media='all' />
+    <![endif]-->
+    <link rel='stylesheet' id='plantuml-renderer-css'  href='https://my-internal.server:9999//wp-content/plugins/plantuml-renderer/public/css/plantuml-renderer-public.css?ver=0.0.1' type='text/css' media='all' />
+    <link rel='stylesheet' id='wordfenceAJAXcss-css'  href='https://my-internal.server:9999//wp-content/plugins/wordfence/css/wordfenceBox.1541524007.css?ver=7.1.17' type='text/css' media='all' />
+    <link rel='stylesheet' id='wpstatistics-css-css'  href='https://my-internal.server:9999//wp-content/plugins/wp-statistics/assets/css/frontend.css?ver=12.5.2' type='text/css' media='all' />
+    <link rel='stylesheet' id='blogsixteen-google-fonts-css'  href='https://my-internal.server:9999//fonts.googleapis.com/css?family=Open+Sans%3A400%2C700%2C300%7CSource+Sans+Pro%3A400%2C700%2C300%2C700italic%2C400italic&#038;ver=1ef8fcd0faf53d1b5dbc13a5978d22bb' type='text/css' media='all' />
+    <link rel='stylesheet' id='blogsixteen-style-css'  href='https://my-internal.server:9999//wp-content/themes/blogsixteen/style.css?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb' type='text/css' media='all' />
+    <link rel='stylesheet' id='wpdreams-asl-basic-css'  href='//nerdblog.steinkopf.net/wp-content/plugins/ajax-search-lite/css/style.basic.css?ver=4.7.19' type='text/css' media='all' />
+    <link rel='stylesheet' id='wpdreams-ajaxsearchlite-css'  href='//nerdblog.steinkopf.net/wp-content/plugins/ajax-search-lite/css/style-curvy-black.css?ver=4.7.19' type='text/css' media='all' />
+    <link rel='stylesheet' id='fancybox-css'  href='https://my-internal.server:9999//wp-content/plugins/easy-fancybox/css/jquery.fancybox.1.3.23.min.css' type='text/css' media='screen' />
+    <link rel='stylesheet' id='yoast-seo-adminbar-css'  href='https://my-internal.server:9999//wp-content/plugins/wordpress-seo/css/dist/adminbar-910.min.css?ver=9.1' type='text/css' media='all' />
+    <script type='text/javascript' src='https://my-internal.server:9999//wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+    <script type='text/javascript' src='https://my-internal.server:9999//wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+    <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/plantuml-renderer/public/js/plantuml-renderer-public.js?ver=0.0.1'></script>
+    <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/wordfence/js/admin.ajaxWatcher.1541524007.js?ver=7.1.17'></script>
+    <link rel='https://api.w.org/' href='https://my-internal.server:9999//wp-json/' />
+    <link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://my-internal.server:9999//xmlrpc.php?rsd" />
+    <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://my-internal.server:9999//wp-includes/wlwmanifest.xml" />
+
+    <link rel='shortlink' href='https://my-internal.server:9999//?p=18182' />
+    <link rel="alternate" type="application/json+oembed" href="https://my-internal.server:9999//wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" />
+    <link rel="alternate" type="text/xml+oembed" href="https://my-internal.server:9999//wp-json/oembed/1.0/embed?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&#038;format=xml" />
+    <link type="text/css" rel="stylesheet" href="https://my-internal.server:9999//wp-content/plugins/category-specific-rss-feed-menu/wp_cat_rss_style.css" />
+    <script type="text/javascript">
+        <!-- see https://my-internal.server:9999//datenschutzerklaerung/ -->
+            var gaProperty = 'UA-51102631-3';
+        var disableStr = 'ga-disable-' + gaProperty;
+        if (document.cookie.indexOf(disableStr + '=true') > -1) {
+            window[disableStr] = true;
+        }
+        function gaOptout() {
+            document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC;
+            path=/';
+            window[disableStr] = true;
+        }
+    </script>
+    <style type="text/css">
+        body { background-color: ; }
+        a { color: #dd1818; }
+        body , .main-navigation ul ul a { color: ; }
+        h1,h2,h3,h4,h5 { color: #09071e; }
+        .current_page_item a { color: #0e00d8;}
+        button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover { border-color: #0e00d8; background-color: #0e00d8; }
+        .site-title a, .site-description, .main-navigation a { color: #dd1818; }
+        .site-description:after { border-color: #dd1818; }
+        #masthead { background-repeat: no-repeat; background-size: cover; background-image: url(''); ;}
+        #masthead { background-color: #000000; }
+        .main-navigation { background-color: #333333; }
+        .current_page_item a, .main-navigation a:focus, .main-navigation a:hover { color: #dd1818; }
+    </style>
+    <link href='//nerdblog.steinkopf.net/fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <style type="text/css" media="print">#wpadminbar { display:none; }</style>
+    <style type="text/css" media="screen">
+        html { margin-top: 32px !important; }
+        * html body { margin-top: 32px !important; }
+        @media screen and ( max-width: 782px ) {
+            html { margin-top: 46px !important; }
+            * html body { margin-top: 46px !important; }
+        }
+    </style>
+    <style type="text/css">
+        <!--
+
+        @font-face {
+            font-family: 'aslsicons2';
+            src: url('https://my-internal.server:9999//wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot');
+            src: url('https://my-internal.server:9999//wp-content/plugins/ajax-search-lite/css/fonts/icons2.eot?#iefix') format('embedded-opentype'),
+            url('https://my-internal.server:9999//wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff2') format('woff2'),
+            url('https://my-internal.server:9999//wp-content/plugins/ajax-search-lite/css/fonts/icons2.woff') format('woff'),
+            url('https://my-internal.server:9999//wp-content/plugins/ajax-search-lite/css/fonts/icons2.ttf') format('truetype'),
+            url('https://my-internal.server:9999//wp-content/plugins/ajax-search-lite/css/fonts/icons2.svg#icons') format('svg');
+            font-weight: normal;
+            font-style: normal;
+        }
+        div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label {
+            font-size: 0px !important;
+            color: rgba(0, 0, 0, 0);
+        }
+        div[id*='ajaxsearchlitesettings'].searchsettings .asl_option_inner label:after {
+            font-size: 11px !important;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        div[id*='ajaxsearchlite'].wpdreams_asl_container {
+            width: 100%;
+            margin: 0px 0px 0px 0px;
+        }
+        div[id*='ajaxsearchliteres'].wpdreams_asl_results div.resdrg span.highlighted {
+            font-weight: bold;
+            color: #d9312b;
+            background-color: #eee;
+        }
+        div[id*='ajaxsearchliteres'].wpdreams_asl_results .results div.asl_image {
+            width: 70px;
+            height: 70px;
+        }
+        div.asl_r .results {
+            max-height: auto;
+        }
+        -->
+    </style>
+    <script type="text/javascript">
+        if ( typeof _ASL !== "undefined" && _ASL !== null && typeof _ASL.initialize !== "undefined" )
+            _ASL.initialize();
+    </script>
+    <link rel="icon" href="https://my-internal.server:9999//wp-content/uploads/2015/12/cropped-Bildschirmfoto-2015-12-19-um-13.01.05_w-32x32.png" sizes="32x32" />
+    <link rel="icon" href="https://my-internal.server:9999//wp-content/uploads/2015/12/cropped-Bildschirmfoto-2015-12-19-um-13.01.05_w-192x192.png" sizes="192x192" />
+    <link rel="apple-touch-icon-precomposed" href="https://my-internal.server:9999//wp-content/uploads/2015/12/cropped-Bildschirmfoto-2015-12-19-um-13.01.05_w-180x180.png" />
+    <meta name="msapplication-TileImage" content="https://my-internal.server:9999//wp-content/uploads/2015/12/cropped-Bildschirmfoto-2015-12-19-um-13.01.05_w-270x270.png" />
+    <style type="text/css" id="wp-custom-css">
+        /*
+Willkommen bei Individuelles CSS
+
+Wie es funktioniert, steht unter http://wp.me/PEmnE-Bt
+*/
+        /* DSTK 2016-03: mehr Abstand unter dem Datum eines Posts */
+        .entry-meta {
+            padding-bottom: 1em;
+        }
+
+        /* DSTK 2016-03: Seite breiter (war: 916px) */
+        #page {
+            max-width: 1216px;
+        }
+
+        .site-branding {
+            max-width: 1216px;
+        }
+
+        .header-menu {
+            max-width: 1240px;
+        }
+
+        .comment {
+            max-width: 800px;
+        }
+
+        /* DSTK 2016-04: Backtick () mit Rahmen und hinterlegen: */
+        code {
+            background: #f5f5f5;
+            border: 1px solid #dd1818;
+            /* was #ccc */
+            border-radius: 2px;
+            padding: 1px 3px;
+            /*
+                font-family: Courier New, Courier, monospace;
+                padding: 0;
+                padding-top: .2em;
+                padding-bottom: .2em;
+                margin: 0;
+                font-size: 85%;
+                background-color: rgba(0,0,0,0.04);
+                border-radius: 3px;
+                border-color: grey;
+                border-width: 1px;
+                border-style: solid;
+                */
+        }
+
+        pre code {
+            border-style: none;
+            background: #eee;
+        }
+
+        /* DSTK 2016-04: Umbruch vor Tagged, Edit im Post-Footer */
+        /* klappt so nicht in der Vorschau (Live klappt!), weil die " immer fälschlich zu \" gequotet werden. */
+        .entry-footer span:before {
+            content: " ";
+            display: block;
+        }
+
+        /* DSTK 2016-04: weniger Abstand nach Absätzen, mehr bei Aufzählungen */
+        p {
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+            margin-top: 8px;
+        }
+
+        /* DSTK 2016-04: weniger Abstand innerhalb der großen Code-Blöcke */
+        pre {
+            margin-bottom: 1em;
+            padding: 1em;
+        }
+
+        /* DSTK 2017-03: Boxen um die Tags */
+        span.tags-links a {
+            border: 1px solid #dd1818;
+            background-color: rgba(0,0,0,0.07);
+        }
+
+        /* DSTK 2018-10: Schriftgröße in gitlab-Snippets anpassen, damit Zeilennummern gleiche Höhe haben wie der enthaltene Code */
+        .gitlab-embed-snippets .diff-line-num {
+            font-size: 15px !important;
+        }		</style>
+</head>
+
+<body class="post-template-default single single-post postid-18182 single-format-standard logged-in admin-bar no-customize-support has-sidebar group-blog">
+
+<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+<header id="masthead" class="site-header" role="banner">
+    <div class="site-branding">
+        <hgroup>
+            <h1 class="site-title"><a href="https://my-internal.server:9999//" title="nerdblog" rel="home">nerdblog</a></h1>
+            <p class="site-description"> Wir sind wirklich keine Nerds ! </p>
+        </hgroup>
+    </div><!-- .site-branding -->
+    <nav role="navigation" id="site-navigation" class="main-navigation" aria-label='Primary Menu '>
+        <div class="header-menu">
+            <h1 class="screen-reader-text">Primary Menu</h1>
+            <div class="menu-dirkmenu-container"><ul id="menu-dirkmenu" class="menu"><li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-44"><a href="https://my-internal.server:9999/">Know-How</a></li>
+                <li id="menu-item-345" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-345"><a href="https://my-internal.server:9999//category/news/">News</a></li>
+                <li id="menu-item-26" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26"><a href="https://my-internal.server:9999//category/twitterfav/">Twitter-Favoriten</a></li>
+                <li id="menu-item-3883" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-3883"><a href="https://my-internal.server:9999//tags/">Tags</a></li>
+                <li id="menu-item-10640" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-10640"><a href="https://my-internal.server:9999//cheat-sheets-memo-seiten/">Cheat-Sheets</a>
+                    <ul class="sub-menu">
+                        <li id="menu-item-10641" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10641"><a href="https://my-internal.server:9999//cheat-sheets-memo-seiten/command-line-one-liner/">Command Line One-Liner</a></li>
+                        <li id="menu-item-10642" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10642"><a href="https://my-internal.server:9999//cheat-sheets-memo-seiten/git-kommandos/">git Kommandos</a></li>
+                        <li id="menu-item-10659" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10659"><a href="https://my-internal.server:9999//cheat-sheets-memo-seiten/windows-security/">Windows Security</a></li>
+                        <li id="menu-item-14687" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14687"><a href="https://my-internal.server:9999//cheat-sheets-memo-seiten/vmware-esxi-low-level/">VMware ESXi</a></li>
+                    </ul>
+                </li>
+                <li id="menu-item-16242" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-16242"><a href="https://my-internal.server:9999//ueber-mich/">Über mich…</a></li>
+            </ul></div>			</div>
+    </nav>
+</header><!-- #masthead -->
+
+<div id="page" class="hfeed site">
+
+    <div id="content" class="site-content">
+
+        <div id="primary" class="content-area">
+            <main id="main" class="site-main" role="main">
+
+
+
+                <article id="post-18182" class="post-18182 post type-post status-publish format-standard hentry category-know-how tag-confluence tag-dev tag-dev-tool tag-diagramme tag-internet-service tag-uml">
+                    <div id="featured-image">
+                    </div>
+                    <header class="entry-header">
+                        <h1 class="entry-title">PlantText: Diagramme aus Text generieren</h1>
+                        <div class="entry-meta">
+                            <span class="posted-on">Posted on <a href="https://my-internal.server:9999//2018/11/planttext-diagramme/" rel="bookmark"><time class="entry-date published updated" datetime="2018-11-02T08:05:56+00:00">2. November 2018</time></a></span><span class="byline"> by <span class="author vcard"><a class="url fn n" href="https://my-internal.server:9999//author/stk/">Dirk Steinkopf</a></span></span>		</div><!-- .entry-meta -->
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-content">
+                        <p>Mit <a href="http://blog.planttext.com/about/">PlantText</a> kann man via Text Diagramme generieren. <a href="https://www.planttext.com/">Hier</a> kann man das ausprobieren und live editieren.</p>
+                        <p>Die benutzte Spache heißt <a href="http://plantuml.com/">PlantUML</a>. Man kann auch die <a href="http://www.graphviz.org/documentation/">Graphviz</a> &#8220;Diagrammsprache&#8221; verwenden, die freiere Graphen erlaubt. Details <a href="https://graphviz.gitlab.io/_pages/pdf/dotguide.pdf">hier</a>.</p>
+                        <p>Es gibt <a href="http://plantuml.com/running">Integrationen</a> in jede Menge gängige Tools. Unter anderem für WordPress und Confluence.</p>
+                        <p>&#8211;</p>
+                        <p>PS. <a href="https://my-internal.server:9999//2016/03/uml-diagramme/">Hier</a> und <a href="https://my-internal.server:9999//2016/01/sequenzdiagramme/">hier</a> habe ich ja schon ähnliche Möglichkeiten beschrieben, <a href="https://my-internal.server:9999//tag/diagramme/">Diagramme</a> in via Textform zu generieren. Diese hier ist mir aber sympathischer.</p>
+                        <p>P.S. Das WordPress-Plugin verträgt sich nicht 100% mit dem von mir außerdem verwendeten Markdown-Plugin. Mein Workaround bestand (besteht) darin, das Markdown-Plugin zu deaktivieren, dann den Artikel mit den Diagrammen anzulegen. Danach kann man das Plugin wieder aktivieren und alles klappt. Das Problem scheint nur im Editor zu liegen, da man über den Workaround den &#8220;normalen&#8221; Editor bekommt.</p>
+                        <h4>Anhang: Beispiele</h4>
+                        <p>Simples Beispiel:</p>
+                        <pre><code>@startuml
+digraph Demo {
+Dach -&gt; Wand -&gt; Boden
+
+Himmel -&gt; Dach
+Himmel -&gt; Boden
+}
+@enduml
+</code></pre>
+                        <p>führt zu</p>
+                        <p><img src=http://www.plantuml.com/plantuml/img/ut8eBaaiAYdDpU5AoKmlIYp8K719pSrNgEPoIKpEKD2rKmXFp4i1qKxvAQbvN1wPkRcfEI0-I1w92v6kvN98pKi1cGO0 alt="PlantUML Syntax:<br />
+@startuml<br />
+digraph Demo {<br />
+Dach -&gt; Wand -&gt; Boden</p>
+<p>Himmel -&gt; Dach<br />
+Himmel -&gt; Boden<br />
+}<br />
+@enduml<br />
+" usemap="#plantuml_map"></p>
+                        <p>Erweitertes Beispiel:</p>
+                        <pre><code>@startuml
+digraph Demo {
+
+"Himmel" [regular=1, style=filled, fillcolor=lightblue, label="Himmel" ]
+
+subgraph clusterHaus {
+label="Haus"; style=filled; fillcolor=grey; fontcolor=red;
+node [ style=filled; fillcolor=white; ]
+Dach; Wand;
+}
+
+Dach -&gt; Wand -&gt; Boden [ label = "auf" ]
+
+Himmel -&gt; Dach [label = "über" ]
+Himmel -&gt; Boden [label = "über"; weight=8 ]
+
+}
+@enduml
+</code></pre>
+                        <p>führt zu</p>
+                        <p><img src=http://www.plantuml.com/plantuml/img/TP31gi8m44Nt-OgXwxfmzo14vE72FtYBuY9jnpOmJMII82B-kvDMHOMt6YvpxvdBg6rCbbEUIFLkO7iQOOTJWAkgzcwQa2fe68TCbiswXfWkXEReYB2leSmkK613RXXJInbh8DiYcLVwe69k5t17EIRalSrH-4-Vg4f_WFKRU62yY0u-BPfbhNpe4Pf_C-VH9THoUMUxKSEVzPAvpGfMcrcN-IiKBvYv21YeR3wMlalpufWJpMkViKN-T3mONnODPomFCJzYlgaj-huy-0u0 alt="PlantUML Syntax:</p>
+<p>@startuml<br />
+digraph Demo {</p>
+<p>&#8220;Himmel&#8221; [regular=1, style=filled, fillcolor=lightblue, label=&#8221;Himmel&#8221; ]</p>
+<p>subgraph clusterHaus {<br />
+label=&#8221;Haus&#8221;; style=filled; fillcolor=grey; fontcolor=red;<br />
+node [ style=filled; fillcolor=white; ]<br />
+Dach; Wand;<br />
+}</p>
+<p>Dach -&gt; Wand -&gt; Boden [ label = &#8220;auf&#8221; ]</p>
+<p>Himmel -&gt; Dach [label = &#8220;ueber&#8221; ]<br />
+Himmel -&gt; Boden [label = &#8220;ueber&#8221;; weight=8 ]</p>
+<p>}<br />
+@enduml</p>
+<p>" usemap="#plantuml_map"></p>
+                        <div class="ShariffSC" style="border-top: 1px solid #ddd; margin-bottom: 2em; font-size: 9pt; font-weight: 600;"><div class="shariff shariff-align-flex-start shariff-widget-align-flex-start" style="display:none" data-services="facebook%7Ctwitter%7Cpinterest%7Cxing%7Clinkedin" data-url="https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" data-timestamp="1541145956" data-backendurl="https://my-internal.server:9999//wp-json/shariff/v1/share_counts?"><div class="ShariffHeadline"><h4>Datensparsames Teilen mit ct-Shariff:</h3></div><ul class="shariff-buttons theme-round orientation-horizontal buttonsize-small"><li class="shariff-button facebook shariff-nocustomcolor" style="background-color:#4273c8"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" title="Bei Facebook teilen" aria-label="Bei Facebook teilen" role="button" rel="nofollow" class="shariff-link" style="; background-color:#3b5998; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 32"><path fill="#3b5998" d="M17.1 0.2v4.7h-2.8q-1.5 0-2.1 0.6t-0.5 1.9v3.4h5.2l-0.7 5.3h-4.5v13.6h-5.5v-13.6h-4.5v-5.3h4.5v-3.9q0-3.3 1.9-5.2t5-1.8q2.6 0 4.1 0.2z"/></svg></span><span class="shariff-text">teilen</span>&nbsp;</a></li><li class="shariff-button twitter shariff-nocustomcolor" style="background-color:#32bbf5"><a href="https://twitter.com/share?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&text=PlantText%3A%20Diagramme%20aus%20Text%20generieren&via=dsteinkopf" title="Bei Twitter teilen" aria-label="Bei Twitter teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#55acee; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 32"><path fill="#55acee" d="M29.7 6.8q-1.2 1.8-3 3.1 0 0.3 0 0.8 0 2.5-0.7 4.9t-2.2 4.7-3.5 4-4.9 2.8-6.1 1q-5.1 0-9.3-2.7 0.6 0.1 1.5 0.1 4.3 0 7.6-2.6-2-0.1-3.5-1.2t-2.2-3q0.6 0.1 1.1 0.1 0.8 0 1.6-0.2-2.1-0.4-3.5-2.1t-1.4-3.9v-0.1q1.3 0.7 2.8 0.8-1.2-0.8-2-2.2t-0.7-2.9q0-1.7 0.8-3.1 2.3 2.8 5.5 4.5t7 1.9q-0.2-0.7-0.2-1.4 0-2.5 1.8-4.3t4.3-1.8q2.7 0 4.5 1.9 2.1-0.4 3.9-1.5-0.7 2.2-2.7 3.4 1.8-0.2 3.5-0.9z"/></svg></span><span class="shariff-text">twittern</span>&nbsp;</a></li><li class="shariff-button googleplus shariff-nocustomcolor" style="background-color:#f75b44"><a href="https://plus.google.com/share?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" title="Bei Google+ teilen" aria-label="Bei Google+ teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#d34836; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#d34836" d="M31.6 14.7h-3.3v-3.3h-2.6v3.3h-3.3v2.6h3.3v3.3h2.6v-3.3h3.3zM10.8 14v4.1h5.7c-0.4 2.4-2.6 4.2-5.7 4.2-3.4 0-6.2-2.9-6.2-6.3s2.8-6.3 6.2-6.3c1.5 0 2.9 0.5 4 1.6v0l2.9-2.9c-1.8-1.7-4.2-2.7-7-2.7-5.8 0-10.4 4.7-10.4 10.4s4.7 10.4 10.4 10.4c6 0 10-4.2 10-10.2 0-0.8-0.1-1.5-0.2-2.2 0 0-9.8 0-9.8 0z"/></svg></span><span class="shariff-text">teilen</span>&nbsp;</a></li><li class="shariff-button whatsapp shariff-nocustomcolor shariff-mobile" style="background-color:#5cbe4a"><a href="whatsapp://send?text=PlantText%3A%20Diagramme%20aus%20Text%20generieren%20https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" title="Bei Whatsapp teilen" aria-label="Bei Whatsapp teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#34af23; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#34af23" d="M17.6 17.4q0.2 0 1.7 0.8t1.6 0.9q0 0.1 0 0.3 0 0.6-0.3 1.4-0.3 0.7-1.3 1.2t-1.8 0.5q-1 0-3.4-1.1-1.7-0.8-3-2.1t-2.6-3.3q-1.3-1.9-1.3-3.5v-0.1q0.1-1.6 1.3-2.8 0.4-0.4 0.9-0.4 0.1 0 0.3 0t0.3 0q0.3 0 0.5 0.1t0.3 0.5q0.1 0.4 0.6 1.6t0.4 1.3q0 0.4-0.6 1t-0.6 0.8q0 0.1 0.1 0.3 0.6 1.3 1.8 2.4 1 0.9 2.7 1.8 0.2 0.1 0.4 0.1 0.3 0 1-0.9t0.9-0.9zM14 26.9q2.3 0 4.3-0.9t3.6-2.4 2.4-3.6 0.9-4.3-0.9-4.3-2.4-3.6-3.6-2.4-4.3-0.9-4.3 0.9-3.6 2.4-2.4 3.6-0.9 4.3q0 3.6 2.1 6.6l-1.4 4.2 4.3-1.4q2.8 1.9 6.2 1.9zM14 2.2q2.7 0 5.2 1.1t4.3 2.9 2.9 4.3 1.1 5.2-1.1 5.2-2.9 4.3-4.3 2.9-5.2 1.1q-3.5 0-6.5-1.7l-7.4 2.4 2.4-7.2q-1.9-3.2-1.9-6.9 0-2.7 1.1-5.2t2.9-4.3 4.3-2.9 5.2-1.1z"/></svg></span><span class="shariff-text">teilen</span>&nbsp;</a></li><li class="shariff-button threema shariff-nocustomcolor shariff-mobile" style="background-color:#4fbc24"><a href="threema://compose?text=PlantText%3A%20Diagramme%20aus%20Text%20generieren%20https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" title="Bei Threema teilen" aria-label="Bei Threema teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#1f1f1f; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#1f1f1f" d="M30.8 10.9c-0.3-1.4-0.9-2.6-1.8-3.8-2-2.6-5.5-4.5-9.4-5.2-1.3-0.2-1.9-0.3-3.5-0.3s-2.2 0-3.5 0.3c-4 0.7-7.4 2.6-9.4 5.2-0.9 1.2-1.5 2.4-1.8 3.8-0.1 0.5-0.2 1.2-0.2 1.6 0 0.4 0.1 1.1 0.2 1.6 0.4 1.9 1.3 3.4 2.9 5 0.8 0.8 0.8 0.8 0.7 1.3 0 0.6-0.5 1.6-1.7 3.6-0.3 0.5-0.5 0.9-0.5 0.9 0 0.1 0.1 0.1 0.5 0 0.8-0.2 2.3-0.6 5.6-1.6 1.1-0.3 1.3-0.4 2.3-0.4 0.8 0 1.1 0 2.3 0.2 1.5 0.2 3.5 0.2 4.9 0 5.1-0.6 9.3-2.9 11.4-6.3 0.5-0.9 0.9-1.8 1.1-2.8 0.1-0.5 0.2-1.1 0.2-1.6 0-0.7-0.1-1.1-0.2-1.6-0.3-1.4 0.1 0.5 0 0zM20.6 17.3c0 0.4-0.4 0.8-0.8 0.8h-7.7c-0.4 0-0.8-0.4-0.8-0.8v-4.6c0-0.4 0.4-0.8 0.8-0.8h0.2l0-1.6c0-0.9 0-1.8 0.1-2 0.1-0.6 0.6-1.2 1.1-1.7s1.1-0.7 1.9-0.8c1.8-0.3 3.7 0.7 4.2 2.2 0.1 0.3 0.1 0.7 0.1 2.1v0 1.7h0.1c0.4 0 0.8 0.4 0.8 0.8v4.6zM15.6 7.3c-0.5 0.1-0.8 0.3-1.2 0.6s-0.6 0.8-0.7 1.3c0 0.2 0 0.8 0 1.5l0 1.2h4.6v-1.3c0-1 0-1.4-0.1-1.6-0.3-1.1-1.5-1.9-2.6-1.7zM25.8 28.2c0 1.2-1 2.2-2.1 2.2s-2.1-1-2.1-2.1c0-1.2 1-2.1 2.2-2.1s2.2 1 2.2 2.2zM18.1 28.2c0 1.2-1 2.2-2.1 2.2s-2.1-1-2.1-2.1c0-1.2 1-2.1 2.2-2.1s2.2 1 2.2 2.2zM10.4 28.2c0 1.2-1 2.2-2.1 2.2s-2.1-1-2.1-2.1c0-1.2 1-2.1 2.2-2.1s2.2 1 2.2 2.2z"/></svg></span><span class="shariff-text">teilen</span>&nbsp;</a></li><li class="shariff-button pinterest shariff-nocustomcolor" style="background-color:#e70f18"><a href="https://www.pinterest.com/pin/create/link/?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&media=https%3A%2F%2Fnerdblog.steinkopf.net%2Fwp-content%2Fplugins%2Fshariff%2Fimages%2FdefaultHint.png&description=PlantText%3A%20Diagramme%20aus%20Text%20generieren" title="Bei Pinterest pinnen" aria-label="Bei Pinterest pinnen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#cb2027; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 32"><path fill="#cb2027" d="M27.4 16q0 3.7-1.8 6.9t-5 5-6.9 1.9q-2 0-3.9-0.6 1.1-1.7 1.4-2.9 0.2-0.6 1-3.8 0.4 0.7 1.3 1.2t2 0.5q2.1 0 3.8-1.2t2.7-3.4 0.9-4.8q0-2-1.1-3.8t-3.1-2.9-4.5-1.2q-1.9 0-3.5 0.5t-2.8 1.4-2 2-1.2 2.3-0.4 2.4q0 1.9 0.7 3.3t2.1 2q0.5 0.2 0.7-0.4 0-0.1 0.1-0.5t0.2-0.5q0.1-0.4-0.2-0.8-0.9-1.1-0.9-2.7 0-2.7 1.9-4.6t4.9-2q2.7 0 4.2 1.5t1.5 3.8q0 3-1.2 5.2t-3.1 2.1q-1.1 0-1.7-0.8t-0.4-1.9q0.1-0.6 0.5-1.7t0.5-1.8 0.2-1.4q0-0.9-0.5-1.5t-1.4-0.6q-1.1 0-1.9 1t-0.8 2.6q0 1.3 0.4 2.2l-1.8 7.5q-0.3 1.2-0.2 3.2-3.7-1.6-6-5t-2.3-7.6q0-3.7 1.9-6.9t5-5 6.9-1.9 6.9 1.9 5 5 1.8 6.9z"/></svg></span><span class="shariff-text">merken</span>&nbsp;</a></li><li class="shariff-button xing shariff-nocustomcolor" style="background-color:#29888a"><a href="https://www.xing.com/social_plugins/share?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" title="Bei XING teilen" aria-label="Bei XING teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#126567; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 32"><path fill="#126567" d="M10.7 11.9q-0.2 0.3-4.6 8.2-0.5 0.8-1.2 0.8h-4.3q-0.4 0-0.5-0.3t0-0.6l4.5-8q0 0 0 0l-2.9-5q-0.2-0.4 0-0.7 0.2-0.3 0.5-0.3h4.3q0.7 0 1.2 0.8zM25.1 0.4q0.2 0.3 0 0.7l-9.4 16.7 6 11q0.2 0.4 0 0.6-0.2 0.3-0.6 0.3h-4.3q-0.7 0-1.2-0.8l-6-11.1q0.3-0.6 9.5-16.8 0.4-0.8 1.2-0.8h4.3q0.4 0 0.5 0.3z"/></svg></span><span class="shariff-text">teilen</span>&nbsp;</a></li><li class="shariff-button linkedin shariff-nocustomcolor" style="background-color:#1488bf"><a href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&title=PlantText%3A%20Diagramme%20aus%20Text%20generieren" title="Bei LinkedIn teilen" aria-label="Bei LinkedIn teilen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#0077b5; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 32"><path fill="#0077b5" d="M6.2 11.2v17.7h-5.9v-17.7h5.9zM6.6 5.7q0 1.3-0.9 2.2t-2.4 0.9h0q-1.5 0-2.4-0.9t-0.9-2.2 0.9-2.2 2.4-0.9 2.4 0.9 0.9 2.2zM27.4 18.7v10.1h-5.9v-9.5q0-1.9-0.7-2.9t-2.3-1.1q-1.1 0-1.9 0.6t-1.2 1.5q-0.2 0.5-0.2 1.4v9.9h-5.9q0-7.1 0-11.6t0-5.3l0-0.9h5.9v2.6h0q0.4-0.6 0.7-1t1-0.9 1.6-0.8 2-0.3q3 0 4.9 2t1.9 6z"/></svg></span><span class="shariff-text">mitteilen</span>&nbsp;</a></li><li class="shariff-button pocket shariff-nocustomcolor" style="background-color:#444"><a href="https://getpocket.com/edit?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&title=PlantText%3A%20Diagramme%20aus%20Text%20generieren" title="Bei Pocket speichern" aria-label="Bei Pocket speichern" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#ff0000; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 28"><path fill="#ff0000" d="M24.5 2q1 0 1.7 0.7t0.7 1.7v8.1q0 2.8-1.1 5.3t-2.9 4.3-4.3 2.9-5.2 1.1q-2.7 0-5.2-1.1t-4.3-2.9-2.9-4.3-1.1-5.2v-8.1q0-1 0.7-1.7t1.7-0.7h22zM13.5 18.6q0.7 0 1.3-0.5l6.3-6.1q0.6-0.5 0.6-1.3 0-0.8-0.5-1.3t-1.3-0.5q-0.7 0-1.3 0.5l-5 4.8-5-4.8q-0.5-0.5-1.3-0.5-0.8 0-1.3 0.5t-0.5 1.3q0 0.8 0.6 1.3l6.3 6.1q0.5 0.5 1.3 0.5z"/></svg></span><span class="shariff-text">pocket</span>&nbsp;</a></li><li class="shariff-button mailto shariff-nocustomcolor" style="background-color:#a8a8a8"><a href="mailto:?body=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&subject=PlantText%3A%20Diagramme%20aus%20Text%20generieren" title="Per E-Mail versenden" aria-label="Per E-Mail versenden" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#999; color:#fff"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path fill="#999" d="M32 12.7v14.2q0 1.2-0.8 2t-2 0.9h-26.3q-1.2 0-2-0.9t-0.8-2v-14.2q0.8 0.9 1.8 1.6 6.5 4.4 8.9 6.1 1 0.8 1.6 1.2t1.7 0.9 2 0.4h0.1q0.9 0 2-0.4t1.7-0.9 1.6-1.2q3-2.2 8.9-6.1 1-0.7 1.8-1.6zM32 7.4q0 1.4-0.9 2.7t-2.2 2.2q-6.7 4.7-8.4 5.8-0.2 0.1-0.7 0.5t-1 0.7-0.9 0.6-1.1 0.5-0.9 0.2h-0.1q-0.4 0-0.9-0.2t-1.1-0.5-0.9-0.6-1-0.7-0.7-0.5q-1.6-1.1-4.7-3.2t-3.6-2.6q-1.1-0.7-2.1-2t-1-2.5q0-1.4 0.7-2.3t2.1-0.9h26.3q1.2 0 2 0.8t0.9 2z"/></svg></span><span class="shariff-text">e-mail</span>&nbsp;</a></li><li class="shariff-button info shariff-nocustomcolor" style="background-color:#eee"><a href="http://ct.de/-2467514" title="Weitere Informationen" aria-label="Weitere Informationen" role="button" rel="noopener nofollow" class="shariff-link" style="; background-color:#fff; color:#fff" target="_blank"><span class="shariff-icon" style=""><svg width="32px" height="20px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 32"><path fill="#999" d="M11.4 24v2.3q0 0.5-0.3 0.8t-0.8 0.4h-9.1q-0.5 0-0.8-0.4t-0.4-0.8v-2.3q0-0.5 0.4-0.8t0.8-0.4h1.1v-6.8h-1.1q-0.5 0-0.8-0.4t-0.4-0.8v-2.3q0-0.5 0.4-0.8t0.8-0.4h6.8q0.5 0 0.8 0.4t0.4 0.8v10.3h1.1q0.5 0 0.8 0.4t0.3 0.8zM9.2 3.4v3.4q0 0.5-0.4 0.8t-0.8 0.4h-4.6q-0.4 0-0.8-0.4t-0.4-0.8v-3.4q0-0.4 0.4-0.8t0.8-0.4h4.6q0.5 0 0.8 0.4t0.4 0.8z"/></svg></span><span class="shariff-text">info</span>&nbsp;</a></li></ul></div></div>			</div><!-- .entry-content -->
+
+                    <footer class="entry-footer">
+                        <span class="cat-links">Posted in <a href="https://my-internal.server:9999//category/know-how/" rel="category tag">Know-How</a></span><span class="tags-links">Tagged <a href="https://my-internal.server:9999//tag/confluence/" rel="tag">confluence</a>, <a href="https://my-internal.server:9999//tag/dev/" rel="tag">dev</a>, <a href="https://my-internal.server:9999//tag/dev-tool/" rel="tag">dev-tool</a>, <a href="https://my-internal.server:9999//tag/diagramme/" rel="tag">diagramme</a>, <a href="https://my-internal.server:9999//tag/internet-service/" rel="tag">internet-service</a>, <a href="https://my-internal.server:9999//tag/uml/" rel="tag">uml</a></span><span class="edit-link"><a class="post-edit-link" href="https://my-internal.server:9999//wp-admin/post.php?post=18182&#038;action=edit">Edit <span class="screen-reader-text">"PlantText: Diagramme aus Text generieren"</span></a></span>	</footer><!-- .entry-footer -->
+                </article><!-- #post-## -->
+
+
+                <nav class="navigation post-navigation" role="navigation">
+                    <h2 class="screen-reader-text">Beitrags-Navigation</h2>
+                    <div class="nav-links"><div class="nav-previous"><a href="https://my-internal.server:9999//2018/11/royole-flexpai-erstes-faltbares-smartphone-der-welt-ist-da/" rel="prev">Royole Flexpai: Erstes faltbares Smartphone der Welt ist da</a></div><div class="nav-next"><a href="https://my-internal.server:9999//2018/11/oekostrom-anteil-klettert-auf-38-prozent/" rel="next">Ökostrom-Anteil klettert auf 38 Prozent</a></div></div>
+                </nav>
+
+                <div id="comments" class="comments-area">
+
+
+
+
+                    <div id="respond" class="comment-respond">
+                        <h3 id="reply-title" class="comment-reply-title">Schreibe einen Kommentar <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2018/11/planttext-diagramme/#respond" style="display:none;">Antworten abbrechen</a></small></h3>			<form action="https://my-internal.server:9999//wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+                        <p class="logged-in-as"><a href="https://my-internal.server:9999//wp-admin/profile.php" aria-label="Angemeldet als Dirk Steinkopf. Profil bearbeiten.">Angemeldet als Dirk Steinkopf</a>. <a href="https://my-internal.server:9999//wp-login.php?action=logout&amp;redirect_to=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&amp;_wpnonce=94fc97ba94">Abmelden?</a></p><p class="comment-form-comment"><label for="comment">Kommentar</label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required="required"></textarea></p><p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Kommentar abschicken" /> <input type='hidden' name='comment_post_ID' value='18182' id='comment_post_ID' />
+                        <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+                    </p><input type="hidden" id="_wp_unfiltered_html_comment_disabled" name="_wp_unfiltered_html_comment_disabled" value="f6ddc89b44" /><script>(function(){if(window===window.parent){document.getElementById('_wp_unfiltered_html_comment_disabled').name='_wp_unfiltered_html_comment';}})();</script>
+                    </form>
+                    </div><!-- #respond -->
+
+                </div><!-- #comments -->
+
+
+            </main><!-- #main -->
+        </div><!-- #primary -->
+
+
+        <div id="secondary" class="widget-area" role="complementary">
+            <aside id="ajaxsearchlitewidget-3" class="widget AjaxSearchLiteWidget"><h3 class="widget-title"> </h3><div id='ajaxsearchlite1' class="wpdreams_asl_container asl_w asl_m asl_m_1">
+                <div class="probox">
+
+
+                    <div class='promagnifier'>
+                        <div class='innericon'>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <path id="magnifier-2-icon" d="M460.355,421.59L353.844,315.078c20.041-27.553,31.885-61.437,31.885-98.037
+                    C385.729,124.934,310.793,50,218.686,50C126.58,50,51.645,124.934,51.645,217.041c0,92.106,74.936,167.041,167.041,167.041
+                    c34.912,0,67.352-10.773,94.184-29.158L419.945,462L460.355,421.59z M100.631,217.041c0-65.096,52.959-118.056,118.055-118.056
+                    c65.098,0,118.057,52.959,118.057,118.056c0,65.096-52.959,118.056-118.057,118.056C153.59,335.097,100.631,282.137,100.631,217.041
+                    z"/>
+            </svg>
+                        </div>
+                    </div>
+
+
+
+                    <div class='prosettings'  data-opened=0>
+                        <div class='innericon'>
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve">
+                <polygon id="arrow-25-icon" transform = "rotate(90 256 256)" points="142.332,104.886 197.48,50 402.5,256 197.48,462 142.332,407.113 292.727,256 "/>
+            </svg>
+                        </div>
+                    </div>
+
+
+
+                    <div class='proinput'>
+                        <form autocomplete="off" aria-label='Ajax search form'>
+                            <input aria-label='Search input' type='search' class='orig' name='phrase' placeholder='' value='' autocomplete="off"/>
+                            <input aria-label='Autocomplete input, do not use this' type='text' class='autocomplete' name='phrase' value='' autocomplete="off"/>
+                            <span class='loading'></span>
+                            <input type='submit' value="Start search" style='width:0; height: 0; visibility: hidden;'>
+                        </form>
+                    </div>
+
+
+
+                    <div class='proloading'>
+
+                        <div class="asl_loader"><div class="asl_loader-inner asl_simple-circle"></div></div>
+
+                    </div>
+
+                    <div class='proclose'>
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+                 y="0px"
+                 width="512px" height="512px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"
+                 xml:space="preserve">
+            <polygon id="x-mark-icon"
+                     points="438.393,374.595 319.757,255.977 438.378,137.348 374.595,73.607 255.995,192.225 137.375,73.622 73.607,137.352 192.246,255.983 73.622,374.625 137.352,438.393 256.002,319.734 374.652,438.378 "/>
+        </svg>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+                <div id='ajaxsearchlitesettings1' class="searchsettings wpdreams_asl_settings asl_w asl_s asl_s_1">
+                    <form name='options' autocomplete='off'>
+
+
+                        <fieldset class="asl_sett_scroll">
+                            <legend style="display: none;">Generic selectors</legend>
+                            <div class="asl_option_inner hiddend">
+                                <input type='hidden' name='qtranslate_lang' id='qtranslate_lang'
+                                       value='0'/>
+                            </div>
+
+
+
+                            <div class="asl_option hiddend">
+                                <div class="asl_option_inner">
+                                    <input type="checkbox" value="checked" id="set_exactonly1"
+                                           title="Exact matches only"
+                                           name="set_exactonly" />
+                                    <label for="set_exactonly1">Exact matches only</label>
+                                </div>
+                                <div class="asl_option_label">
+                                    Exact matches only                </div>
+                            </div>
+                            <div class="asl_option hiddend">
+                                <div class="asl_option_inner">
+                                    <input type="checkbox" value="None" id="set_intitle1"
+                                           title="Search in title"
+                                           name="set_intitle"  checked="checked"/>
+                                    <label for="set_intitle1">Search in title</label>
+                                </div>
+                                <div class="asl_option_label">
+                                    Search in title                </div>
+                            </div>
+                            <div class="asl_option hiddend">
+                                <div class="asl_option_inner">
+                                    <input type="checkbox" value="None" id="set_incontent1"
+                                           title="Search in content"
+                                           name="set_incontent"  checked="checked"/>
+                                    <label for="set_incontent1">Search in content</label>
+                                </div>
+                                <div class="asl_option_label">
+                                    Search in content                </div>
+                            </div>
+                            <div class="asl_option_inner hiddend">
+                                <input type="checkbox" value="None" id="set_inexcerpt1"
+                                       title="Search in excerpt"
+                                       name="set_inexcerpt"  checked="checked"/>
+                                <label for="set_inexcerpt1">Search in excerpt</label>
+                            </div>
+
+                            <div class="asl_option hiddend">
+                                <div class="asl_option_inner">
+                                    <input type="checkbox" value="None" id="set_inposts1"
+                                           title="Search in posts"
+                                           name="set_inposts"  checked="checked"/>
+                                    <label for="set_inposts1">Search in posts</label>
+                                </div>
+                                <div class="asl_option_label">
+                                    Search in posts                </div>
+                            </div>
+                            <div class="asl_option hiddend">
+                                <div class="asl_option_inner">
+                                    <input type="checkbox" value="None" id="set_inpages1"
+                                           title="Search in pages"
+                                           name="set_inpages" />
+                                    <label for="set_inpages1">Search in pages</label>
+                                </div>
+                                <div class="asl_option_label">
+                                    Search in pages                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Welche Kategorien durchsuchen?</legend>
+                            <div class='categoryfilter asl_sett_scroll'>
+                                <div class="asl_option">
+                                    <div class="asl_option_inner">
+                                        <input type="checkbox" value="1"
+                                               id="1categoryset_1"
+                                               title="Allgemein"
+                                               name="categoryset[]" checked="checked"/>
+                                        <label for="1categoryset_1">Allgemein</label>
+                                    </div>
+                                    <div class="asl_option_label">
+                                        Allgemein                        </div>
+                                </div>
+                                <div class="asl_option">
+                                    <div class="asl_option_inner">
+                                        <input type="checkbox" value="23"
+                                               id="1categoryset_23"
+                                               title="Know How"
+                                               name="categoryset[]" checked="checked"/>
+                                        <label for="1categoryset_23">Know How</label>
+                                    </div>
+                                    <div class="asl_option_label">
+                                        Know-How                        </div>
+                                </div>
+                                <div class="asl_option">
+                                    <div class="asl_option_inner">
+                                        <input type="checkbox" value="36"
+                                               id="1categoryset_36"
+                                               title="News"
+                                               name="categoryset[]" />
+                                        <label for="1categoryset_36">News</label>
+                                    </div>
+                                    <div class="asl_option_label">
+                                        News                        </div>
+                                </div>
+                                <div class="asl_option">
+                                    <div class="asl_option_inner">
+                                        <input type="checkbox" value="9"
+                                               id="1categoryset_9"
+                                               title="Twitter Fav"
+                                               name="categoryset[]" />
+                                        <label for="1categoryset_9">Twitter Fav</label>
+                                    </div>
+                                    <div class="asl_option_label">
+                                        Twitter-Fav                        </div>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+                <div id='ajaxsearchliteres1' class='vertical wpdreams_asl_results asl_w asl_r asl_r_1'>
+
+
+                    <div class="results">
+
+
+                        <div class="resdrg">
+                        </div>
+
+
+                    </div>
+
+
+                    <p class='showmore'>
+                        <a>suchen...</a>
+                    </p>
+
+                </div>
+
+                <div id="asl_hidden_data">
+                    <svg style="position:absolute" height="0" width="0">
+                        <filter id="aslblur">
+                            <feGaussianBlur in="SourceGraphic" stdDeviation="4"/>
+                        </filter>
+                    </svg>
+                    <svg style="position:absolute" height="0" width="0">
+                        <filter id="no_aslblur"></filter>
+                    </svg>
+
+                </div>
+
+                <div class="asl_init_data wpdreams_asl_data_ct" style="display:none !important;" id="asl_init_id_1" data-asldata="ew0KICAgICJob21ldXJsIjogImh0dHBzOi8vbmVyZGJsb2cuc3RlaW5rb3BmLm5ldC8iLA0KICAgICJyZXN1bHRzdHlwZSI6ICJ2ZXJ0aWNhbCIsDQogICAgInJlc3VsdHNwb3NpdGlvbiI6ICJob3ZlciIsDQogICAgIml0ZW1zY291bnQiOiA4LA0KICAgICJpbWFnZXdpZHRoIjogNzAsDQogICAgImltYWdlaGVpZ2h0IjogNzAsDQogICAgInJlc3VsdGl0ZW1oZWlnaHQiOiAiNzBweCIsDQogICAgInNob3dhdXRob3IiOiAwLA0KICAgICJzaG93ZGF0ZSI6IDEsDQogICAgInNob3dkZXNjcmlwdGlvbiI6IDAsDQogICAgImNoYXJjb3VudCI6ICAzLA0KICAgICJkZWZhdWx0SW1hZ2UiOiAiaHR0cHM6Ly9uZXJkYmxvZy5zdGVpbmtvcGYubmV0L3dwLWNvbnRlbnQvcGx1Z2lucy9hamF4LXNlYXJjaC1saXRlL2ltZy9kZWZhdWx0LmpwZyIsDQogICAgImhpZ2hsaWdodCI6IDAsDQogICAgImhpZ2hsaWdodHdob2xld29yZHMiOiAxLA0KICAgICJzY3JvbGxUb1Jlc3VsdHMiOiAwLA0KICAgICJyZXN1bHRhcmVhY2xpY2thYmxlIjogMSwNCiAgICAiYXV0b2NvbXBsZXRlIjogew0KICAgICAgICAiZW5hYmxlZCIgOiAwLA0KICAgICAgICAibGFuZyIgOiAiZGUiDQogICAgfSwNCiAgICAidHJpZ2dlcm9udHlwZSI6IDEsDQogICAgInRyaWdnZXJfb25fY2xpY2siOiAwLA0KICAgICJ0cmlnZ2VyX29uX2ZhY2V0X2NoYW5nZSI6IDAsDQogICAgInNldHRpbmdzaW1hZ2Vwb3MiOiAicmlnaHQiLA0KICAgICJocmVzdWx0YW5pbWF0aW9uIjogImZ4LW5vbmUiLA0KICAgICJ2cmVzdWx0YW5pbWF0aW9uIjogImZ4LW5vbmUiLA0KICAgICJocmVzdWx0aGlkZWRlc2MiOiAiMSIsDQogICAgInByZXNjb250YWluZXJoZWlnaHQiOiAiNDAwcHgiLA0KICAgICJwc2hvd3N1YnRpdGxlIjogIjAiLA0KICAgICJwc2hvd2Rlc2MiOiAiMSIsDQogICAgImNsb3NlT25Eb2NDbGljayI6IDEsDQogICAgImlpZk5vSW1hZ2UiOiAiZGVzY3JpcHRpb24iLA0KICAgICJpaVJvd3MiOiAyLA0KICAgICJpaXRlbXNXaWR0aCI6IDIwMCwNCiAgICAiaWl0ZW1zSGVpZ2h0IjogMjAwLA0KICAgICJpaXNob3dPdmVybGF5IjogMSwNCiAgICAiaWlibHVyT3ZlcmxheSI6IDEsDQogICAgImlpaGlkZUNvbnRlbnQiOiAxLA0KICAgICJpaWFuaW1hdGlvbiI6ICIxIiwNCiAgICAiYW5hbHl0aWNzIjogMCwNCiAgICAiYW5hbHl0aWNzU3RyaW5nIjogImFqYXhfc2VhcmNoLXthc2xfdGVybX0iLA0KICAgICJyZWRpcmVjdG9uY2xpY2siOiAxLA0KICAgICJyZWRpcmVjdENsaWNrVG8iOiAicmVzdWx0c19wYWdlIiwNCiAgICAicmVkaXJlY3RDbGlja0xvYyI6ICJzYW1lIiwNCiAgICAicmVkaXJlY3Rfb25fZW50ZXIiOiAwLA0KICAgICJyZWRpcmVjdEVudGVyVG8iOiAiYWpheF9zZWFyY2giLA0KICAgICJyZWRpcmVjdEVudGVyTG9jIjogInNhbWUiLA0KICAgICJyZWRpcmVjdF91cmwiOiAiP3M9e3BocmFzZX0iLA0KICAgICJvdmVycmlkZXdwZGVmYXVsdCI6IDAsDQogICAgIm92ZXJyaWRlX21ldGhvZCI6ICJnZXQiDQp9DQo="></div>
+            </aside><aside id="categories-3" class="widget widget_categories"><h3 class="widget-title">Kategorien</h3>		<ul>
+            <li class="cat-item cat-item-1"><a href="https://my-internal.server:9999//category/allgemein/" >Allgemein</a> (8)
+            </li>
+            <li class="cat-item cat-item-23"><a href="https://my-internal.server:9999//category/know-how/" >Know-How</a> (191)
+            </li>
+            <li class="cat-item cat-item-36"><a href="https://my-internal.server:9999//category/news/" >News</a> (5.243)
+            </li>
+            <li class="cat-item cat-item-9"><a href="https://my-internal.server:9999//category/twitterfav/" >Twitter-Fav</a> (292)
+            </li>
+        </ul>
+        </aside>		<aside id="recent-posts-2" class="widget widget_recent_entries">		<h3 class="widget-title">Letzte Beiträge</h3>		<ul>
+            <li>
+                <a href="https://my-internal.server:9999//2018/11/planttext-diagramme/">PlantText: Diagramme aus Text generieren</a>
+                <span class="post-date">2. November 2018</span>
+            </li>
+            <li>
+                <a href="https://my-internal.server:9999//2018/11/wappalyzer/">Wappalyzer</a>
+                <span class="post-date">1. November 2018</span>
+            </li>
+            <li>
+                <a href="https://my-internal.server:9999//2018/10/etckeeper-konfiguration-in-git-versionieren/">etckeeper: Konfiguration in git versionieren</a>
+                <span class="post-date">10. Oktober 2018</span>
+            </li>
+            <li>
+                <a href="https://my-internal.server:9999//2018/10/thegreatsuspender-chrome-tabs-ruhigstellen/">thegreatsuspender: Chrome Tabs ruhigstellen</a>
+                <span class="post-date">7. Oktober 2018</span>
+            </li>
+            <li>
+                <a href="https://my-internal.server:9999//2018/09/remote-backup-mit-borg/">Remote Backup mit borg</a>
+                <span class="post-date">4. September 2018</span>
+            </li>
+        </ul>
+        </aside><aside id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="widget-title">Tags</h3><div class="tagcloud"><a href="https://my-internal.server:9999//tag/ansible/" class="tag-cloud-link tag-link-84 tag-link-position-1" style="font-size: 8pt;" aria-label="ansible (4 Einträge)">ansible</a>
+            <a href="https://my-internal.server:9999//tag/apache/" class="tag-cloud-link tag-link-16 tag-link-position-2" style="font-size: 8.9911504424779pt;" aria-label="apache (5 Einträge)">apache</a>
+            <a href="https://my-internal.server:9999//tag/architektur/" class="tag-cloud-link tag-link-71 tag-link-position-3" style="font-size: 8pt;" aria-label="architektur (4 Einträge)">architektur</a>
+            <a href="https://my-internal.server:9999//tag/backup/" class="tag-cloud-link tag-link-28 tag-link-position-4" style="font-size: 8pt;" aria-label="backup (4 Einträge)">backup</a>
+            <a href="https://my-internal.server:9999//tag/bash/" class="tag-cloud-link tag-link-117 tag-link-position-5" style="font-size: 9.858407079646pt;" aria-label="bash (6 Einträge)">bash</a>
+            <a href="https://my-internal.server:9999//tag/bildbearbeitung/" class="tag-cloud-link tag-link-25 tag-link-position-6" style="font-size: 9.858407079646pt;" aria-label="bildbearbeitung (6 Einträge)">bildbearbeitung</a>
+            <a href="https://my-internal.server:9999//tag/browser-plugin/" class="tag-cloud-link tag-link-56 tag-link-position-7" style="font-size: 8pt;" aria-label="browser-plugin (4 Einträge)">browser-plugin</a>
+            <a href="https://my-internal.server:9999//tag/command-line/" class="tag-cloud-link tag-link-68 tag-link-position-8" style="font-size: 21.504424778761pt;" aria-label="command-line (60 Einträge)">command-line</a>
+            <a href="https://my-internal.server:9999//tag/confluence/" class="tag-cloud-link tag-link-101 tag-link-position-9" style="font-size: 8pt;" aria-label="confluence (4 Einträge)">confluence</a>
+            <a href="https://my-internal.server:9999//tag/desktop-tool/" class="tag-cloud-link tag-link-77 tag-link-position-10" style="font-size: 10.477876106195pt;" aria-label="desktop-tool (7 Einträge)">desktop-tool</a>
+            <a href="https://my-internal.server:9999//tag/dev/" class="tag-cloud-link tag-link-21 tag-link-position-11" style="font-size: 19.274336283186pt;" aria-label="dev (40 Einträge)">dev</a>
+            <a href="https://my-internal.server:9999//tag/dev-tool/" class="tag-cloud-link tag-link-48 tag-link-position-12" style="font-size: 16.672566371681pt;" aria-label="dev-tool (24 Einträge)">dev-tool</a>
+            <a href="https://my-internal.server:9999//tag/diagramme/" class="tag-cloud-link tag-link-61 tag-link-position-13" style="font-size: 8.9911504424779pt;" aria-label="diagramme (5 Einträge)">diagramme</a>
+            <a href="https://my-internal.server:9999//tag/docker/" class="tag-cloud-link tag-link-15 tag-link-position-14" style="font-size: 18.035398230088pt;" aria-label="docker (31 Einträge)">docker</a>
+            <a href="https://my-internal.server:9999//tag/docker-compose/" class="tag-cloud-link tag-link-102 tag-link-position-15" style="font-size: 12.70796460177pt;" aria-label="docker-compose (11 Einträge)">docker-compose</a>
+            <a href="https://my-internal.server:9999//tag/docker-machine/" class="tag-cloud-link tag-link-164 tag-link-position-16" style="font-size: 8.9911504424779pt;" aria-label="docker-machine (5 Einträge)">docker-machine</a>
+            <a href="https://my-internal.server:9999//tag/esxi/" class="tag-cloud-link tag-link-44 tag-link-position-17" style="font-size: 13.079646017699pt;" aria-label="esxi (12 Einträge)">esxi</a>
+            <a href="https://my-internal.server:9999//tag/git/" class="tag-cloud-link tag-link-62 tag-link-position-18" style="font-size: 12.70796460177pt;" aria-label="git (11 Einträge)">git</a>
+            <a href="https://my-internal.server:9999//tag/go/" class="tag-cloud-link tag-link-31 tag-link-position-19" style="font-size: 8pt;" aria-label="go (4 Einträge)">go</a>
+            <a href="https://my-internal.server:9999//tag/golang/" class="tag-cloud-link tag-link-32 tag-link-position-20" style="font-size: 8pt;" aria-label="golang (4 Einträge)">golang</a>
+            <a href="https://my-internal.server:9999//tag/html/" class="tag-cloud-link tag-link-57 tag-link-position-21" style="font-size: 8.9911504424779pt;" aria-label="html (5 Einträge)">html</a>
+            <a href="https://my-internal.server:9999//tag/internet-service/" class="tag-cloud-link tag-link-18 tag-link-position-22" style="font-size: 16.424778761062pt;" aria-label="internet-service (23 Einträge)">internet-service</a>
+            <a href="https://my-internal.server:9999//tag/ios/" class="tag-cloud-link tag-link-95 tag-link-position-23" style="font-size: 8.9911504424779pt;" aria-label="ios (5 Einträge)">ios</a>
+            <a href="https://my-internal.server:9999//tag/java/" class="tag-cloud-link tag-link-50 tag-link-position-24" style="font-size: 13.575221238938pt;" aria-label="java (13 Einträge)">java</a>
+            <a href="https://my-internal.server:9999//tag/letsencrypt/" class="tag-cloud-link tag-link-17 tag-link-position-25" style="font-size: 8pt;" aria-label="letsencrypt (4 Einträge)">letsencrypt</a>
+            <a href="https://my-internal.server:9999//tag/linux/" class="tag-cloud-link tag-link-41 tag-link-position-26" style="font-size: 19.150442477876pt;" aria-label="linux (39 Einträge)">linux</a>
+            <a href="https://my-internal.server:9999//tag/mac/" class="tag-cloud-link tag-link-26 tag-link-position-27" style="font-size: 17.663716814159pt;" aria-label="mac (29 Einträge)">mac</a>
+            <a href="https://my-internal.server:9999//tag/mac-basics/" class="tag-cloud-link tag-link-172 tag-link-position-28" style="font-size: 13.079646017699pt;" aria-label="mac-basics (12 Einträge)">mac-basics</a>
+            <a href="https://my-internal.server:9999//tag/mail/" class="tag-cloud-link tag-link-97 tag-link-position-29" style="font-size: 8pt;" aria-label="mail (4 Einträge)">mail</a>
+            <a href="https://my-internal.server:9999//tag/markdown/" class="tag-cloud-link tag-link-65 tag-link-position-30" style="font-size: 9.858407079646pt;" aria-label="markdown (6 Einträge)">markdown</a>
+            <a href="https://my-internal.server:9999//tag/monitoring/" class="tag-cloud-link tag-link-182 tag-link-position-31" style="font-size: 13.079646017699pt;" aria-label="monitoring (12 Einträge)">monitoring</a>
+            <a href="https://my-internal.server:9999//tag/openssl/" class="tag-cloud-link tag-link-60 tag-link-position-32" style="font-size: 8pt;" aria-label="openssl (4 Einträge)">openssl</a>
+            <a href="https://my-internal.server:9999//tag/openwrt/" class="tag-cloud-link tag-link-34 tag-link-position-33" style="font-size: 8.9911504424779pt;" aria-label="openwrt (5 Einträge)">openwrt</a>
+            <a href="https://my-internal.server:9999//tag/ops/" class="tag-cloud-link tag-link-24 tag-link-position-34" style="font-size: 22pt;" aria-label="ops (67 Einträge)">ops</a>
+            <a href="https://my-internal.server:9999//tag/owncloud/" class="tag-cloud-link tag-link-114 tag-link-position-35" style="font-size: 8pt;" aria-label="owncloud (4 Einträge)">owncloud</a>
+            <a href="https://my-internal.server:9999//tag/reverse-proxy/" class="tag-cloud-link tag-link-100 tag-link-position-36" style="font-size: 9.858407079646pt;" aria-label="reverse-proxy (6 Einträge)">reverse-proxy</a>
+            <a href="https://my-internal.server:9999//tag/security/" class="tag-cloud-link tag-link-93 tag-link-position-37" style="font-size: 13.946902654867pt;" aria-label="security (14 Einträge)">security</a>
+            <a href="https://my-internal.server:9999//tag/ssh/" class="tag-cloud-link tag-link-148 tag-link-position-38" style="font-size: 8.9911504424779pt;" aria-label="ssh (5 Einträge)">ssh</a>
+            <a href="https://my-internal.server:9999//tag/ssl/" class="tag-cloud-link tag-link-64 tag-link-position-39" style="font-size: 8.9911504424779pt;" aria-label="ssl (5 Einträge)">ssl</a>
+            <a href="https://my-internal.server:9999//tag/tutum/" class="tag-cloud-link tag-link-13 tag-link-position-40" style="font-size: 8pt;" aria-label="tutum (4 Einträge)">tutum</a>
+            <a href="https://my-internal.server:9999//tag/ubuntu/" class="tag-cloud-link tag-link-46 tag-link-position-41" style="font-size: 13.079646017699pt;" aria-label="ubuntu (12 Einträge)">ubuntu</a>
+            <a href="https://my-internal.server:9999//tag/website/" class="tag-cloud-link tag-link-59 tag-link-position-42" style="font-size: 9.858407079646pt;" aria-label="website (6 Einträge)">website</a>
+            <a href="https://my-internal.server:9999//tag/windows/" class="tag-cloud-link tag-link-138 tag-link-position-43" style="font-size: 9.858407079646pt;" aria-label="windows (6 Einträge)">windows</a>
+            <a href="https://my-internal.server:9999//tag/wordpress/" class="tag-cloud-link tag-link-14 tag-link-position-44" style="font-size: 8pt;" aria-label="wordpress (4 Einträge)">wordpress</a>
+            <a href="https://my-internal.server:9999//tag/zabbix/" class="tag-cloud-link tag-link-200 tag-link-position-45" style="font-size: 13.079646017699pt;" aria-label="zabbix (12 Einträge)">zabbix</a></div>
+        </aside><aside id="archives-4" class="widget widget_archive"><h3 class="widget-title">Archive</h3>		<ul>
+            <li><a href='https://my-internal.server:9999//2018/11/'>November 2018</a>&nbsp;(79)</li>
+            <li><a href='https://my-internal.server:9999//2018/10/'>Oktober 2018</a>&nbsp;(179)</li>
+            <li><a href='https://my-internal.server:9999//2018/09/'>September 2018</a>&nbsp;(202)</li>
+            <li><a href='https://my-internal.server:9999//2018/08/'>August 2018</a>&nbsp;(138)</li>
+            <li><a href='https://my-internal.server:9999//2018/07/'>Juli 2018</a>&nbsp;(165)</li>
+            <li><a href='https://my-internal.server:9999//2018/06/'>Juni 2018</a>&nbsp;(161)</li>
+            <li><a href='https://my-internal.server:9999//2018/05/'>Mai 2018</a>&nbsp;(191)</li>
+            <li><a href='https://my-internal.server:9999//2018/04/'>April 2018</a>&nbsp;(130)</li>
+            <li><a href='https://my-internal.server:9999//2018/03/'>März 2018</a>&nbsp;(188)</li>
+            <li><a href='https://my-internal.server:9999//2018/02/'>Februar 2018</a>&nbsp;(172)</li>
+            <li><a href='https://my-internal.server:9999//2018/01/'>Januar 2018</a>&nbsp;(203)</li>
+            <li><a href='https://my-internal.server:9999//2017/12/'>Dezember 2017</a>&nbsp;(186)</li>
+            <li><a href='https://my-internal.server:9999//2017/11/'>November 2017</a>&nbsp;(114)</li>
+            <li><a href='https://my-internal.server:9999//2017/10/'>Oktober 2017</a>&nbsp;(93)</li>
+            <li><a href='https://my-internal.server:9999//2017/09/'>September 2017</a>&nbsp;(154)</li>
+            <li><a href='https://my-internal.server:9999//2017/08/'>August 2017</a>&nbsp;(142)</li>
+            <li><a href='https://my-internal.server:9999//2017/07/'>Juli 2017</a>&nbsp;(141)</li>
+            <li><a href='https://my-internal.server:9999//2017/06/'>Juni 2017</a>&nbsp;(129)</li>
+            <li><a href='https://my-internal.server:9999//2017/05/'>Mai 2017</a>&nbsp;(137)</li>
+            <li><a href='https://my-internal.server:9999//2017/04/'>April 2017</a>&nbsp;(129)</li>
+            <li><a href='https://my-internal.server:9999//2017/03/'>März 2017</a>&nbsp;(135)</li>
+            <li><a href='https://my-internal.server:9999//2017/02/'>Februar 2017</a>&nbsp;(91)</li>
+            <li><a href='https://my-internal.server:9999//2017/01/'>Januar 2017</a>&nbsp;(111)</li>
+            <li><a href='https://my-internal.server:9999//2016/12/'>Dezember 2016</a>&nbsp;(125)</li>
+            <li><a href='https://my-internal.server:9999//2016/11/'>November 2016</a>&nbsp;(326)</li>
+            <li><a href='https://my-internal.server:9999//2016/10/'>Oktober 2016</a>&nbsp;(159)</li>
+            <li><a href='https://my-internal.server:9999//2016/09/'>September 2016</a>&nbsp;(196)</li>
+            <li><a href='https://my-internal.server:9999//2016/08/'>August 2016</a>&nbsp;(190)</li>
+            <li><a href='https://my-internal.server:9999//2016/07/'>Juli 2016</a>&nbsp;(160)</li>
+            <li><a href='https://my-internal.server:9999//2016/06/'>Juni 2016</a>&nbsp;(168)</li>
+            <li><a href='https://my-internal.server:9999//2016/05/'>Mai 2016</a>&nbsp;(170)</li>
+            <li><a href='https://my-internal.server:9999//2016/04/'>April 2016</a>&nbsp;(210)</li>
+            <li><a href='https://my-internal.server:9999//2016/03/'>März 2016</a>&nbsp;(251)</li>
+            <li><a href='https://my-internal.server:9999//2016/02/'>Februar 2016</a>&nbsp;(232)</li>
+            <li><a href='https://my-internal.server:9999//2016/01/'>Januar 2016</a>&nbsp;(161)</li>
+            <li><a href='https://my-internal.server:9999//2015/12/'>Dezember 2015</a>&nbsp;(13)</li>
+        </ul>
+        </aside><aside id="meta-10" class="widget widget_meta"><h3 class="widget-title">Kram</h3>			<ul>
+            <li><a rel="nofollow" href="https://my-internal.server:9999//wp-admin/">Website-Administration</a></li>			<li><a rel="nofollow" href="https://my-internal.server:9999//wp-login.php?action=logout&#038;_wpnonce=94fc97ba94">Abmelden</a></li>
+            <li><a href="https://my-internal.server:9999//feed/">Beitrags-Feed (<abbr title="Really Simple Syndication">RSS</abbr>)</a></li>
+            <li><a href="https://my-internal.server:9999//comments/feed/">Kommentare als <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+            <li><a href="https://de.wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>			</ul>
+        </aside><aside id="category_rss_widgets" class="widget widget_cat_spec_rss"><h3 class="widget-title">RSS-Feed nach Kategorien</h3><div class="cat_specific_rss"><ul class="cat_show_image">	<li class="cat-item cat-item-1"><a href="https://my-internal.server:9999//category/allgemein/feed/" >Allgemein</a> (8) </li> 	<li class="cat-item cat-item-23"><a href="https://my-internal.server:9999//category/know-how/feed/" >Know-How</a> (191) </li> 	<li class="cat-item cat-item-36"><a href="https://my-internal.server:9999//category/news/feed/" >News</a> (5.243) </li> 	<li class="cat-item cat-item-9"><a href="https://my-internal.server:9999//category/twitterfav/feed/" >Twitter-Fav</a> (292) </li> </ul></div></aside><aside id="nav_menu-7" class="widget widget_nav_menu"><h3 class="widget-title">Rechtliches</h3><div class="menu-impressum-container"><ul id="menu-impressum" class="menu"><li id="menu-item-42" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-42"><a href="https://my-internal.server:9999//impressum/">Impressum</a></li>
+            <li id="menu-item-40" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-40"><a href="https://my-internal.server:9999//datenschutzerklaerung/">Datenschutzerklärung</a></li>
+            <li id="menu-item-41" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-41"><a href="https://my-internal.server:9999//disclaimer/">Haftungsausschluss (Disclaimer)</a></li>
+        </ul></div></aside><aside id="text-4" class="widget widget_text"><h3 class="widget-title">Übrigens</h3>			<div class="textwidget"><p>Dies ist nicht wirklich ein Blog&#8230;</p>
+            <p>(Eher jede Menge &#8220;Dirkness&#8221; 🙂 )</p>
+        </div>
+        </aside><aside id="media_image-2" class="widget widget_media_image"><img width="300" height="113" src="https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel-300x113.png" class="image wp-image-10785  attachment-medium size-medium" alt="" style="max-width: 100%; height: auto;" srcset="https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel-300x113.png 300w, https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel-768x290.png 768w, https://my-internal.server:9999//wp-content/uploads/2017/12/nerdblog-titel.png 926w" sizes="(max-width: 300px) 100vw, 300px" /></aside></div><!-- #secondary -->
+
+    </div><!-- #content -->
+
+    <footer id="colophon" class="site-footer" role="contentinfo">
+
+        <div class="footer-content">
+            <div class="site-info">
+                <a href="https://wordpress.org/">// Proudly powered by WordPress</a>
+                <span class="sep"> | </span>
+                Theme: blogsixteen			</div><!-- .site-info -->
+            <link rel='stylesheet' id='shariffcss-css'  href='https://my-internal.server:9999//wp-content/plugins/shariff/css/shariff.min.css?ver=4.5.1' type='text/css' media='all' />
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-includes/js/admin-bar.min.js?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/anti-spam/js/anti-spam-5.2.js'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/themes/blogsixteen/js/navigation.js?ver=20120206'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/themes/blogsixteen/js/focus.js?ver=20160130'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/themes/blogsixteen/js/skip-link-focus-fix.js?ver=20130115'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-includes/js/comment-reply.min.js?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb'></script>
+            <script type='text/javascript'>
+                /* <![CDATA[ */
+                var ajaxsearchlite = {"ajaxurl":"https:\/\/nerdblog.steinkopf.net\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/nerdblog.steinkopf.net\/wp-admin\/admin-ajax.php","js_scope":"jQuery"};
+                var ASL = {"ajaxurl":"https:\/\/nerdblog.steinkopf.net\/wp-admin\/admin-ajax.php","backend_ajaxurl":"https:\/\/nerdblog.steinkopf.net\/wp-admin\/admin-ajax.php","js_scope":"jQuery","detect_ajax":"0","scrollbar":"1","js_retain_popstate":"0","version":"4729"};
+                /* ]]> */
+            </script>
+            <script type='text/javascript' src='//nerdblog.steinkopf.net/wp-content/plugins/ajax-search-lite/js/min/jquery.ajaxsearchlite.min.js?ver=4.7.19'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/easy-fancybox/js/jquery.fancybox.1.3.23.min.js'></script>
+            <script type='text/javascript'>
+                var fb_timeout, fb_opts={'overlayShow':true,'hideOnOverlayClick':true,'showCloseButton':true,'margin':20,'centerOnScroll':true,'enableEscapeButton':true,'autoScale':true };
+                if(typeof easy_fancybox_handler==='undefined'){
+                    var easy_fancybox_handler=function(){
+                        jQuery('.nofancybox,a.wp-block-file__button,a.pin-it-button,a[href*="pinterest.com/pin/create"],a[href*="facebook.com/share"],a[href*="twitter.com/share"]').addClass('nolightbox');
+                        /* IMG */
+                        var fb_IMG_select='a[href*=".jpg"]:not(.nolightbox,li.nolightbox>a),area[href*=".jpg"]:not(.nolightbox),a[href*=".jpeg"]:not(.nolightbox,li.nolightbox>a),area[href*=".jpeg"]:not(.nolightbox),a[href*=".png"]:not(.nolightbox,li.nolightbox>a),area[href*=".png"]:not(.nolightbox)';
+                        jQuery(fb_IMG_select).addClass('fancybox image');
+                        var fb_IMG_sections=jQuery('div.gallery');
+                        fb_IMG_sections.each(function(){jQuery(this).find(fb_IMG_select).attr('rel','gallery-'+fb_IMG_sections.index(this));});
+                        jQuery('a.fancybox,area.fancybox,li.fancybox a').each(function(){jQuery(this).fancybox(jQuery.extend({},fb_opts,{'transitionIn':'elastic','transitionOut':'elastic','opacity':true,'hideOnContentClick':true,'titleShow':true,'titlePosition':'outside','titleFromAlt':true,'showNavArrows':true,'enableKeyboardNav':true,'cyclic':false}))});
+                        /* Inline */
+                        jQuery('a.fancybox-inline,area.fancybox-inline,li.fancybox-inline a').each(function(){jQuery(this).fancybox(jQuery.extend({},fb_opts,{'type':'inline','autoDimensions':true,'scrolling':'no','easingIn':'easeOutBack','easingOut':'easeInBack','opacity':false,'hideOnContentClick':false,'titleShow':false}))});};
+                    jQuery('a.fancybox-close').on('click',function(e){e.preventDefault();jQuery.fancybox.close()});
+                };
+                var easy_fancybox_auto=function(){setTimeout(function(){jQuery('#fancybox-auto').trigger('click')},1000);};
+                jQuery(easy_fancybox_handler);jQuery(document).on('post-load',easy_fancybox_handler);
+                jQuery(easy_fancybox_auto);
+            </script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/easy-fancybox/js/jquery.easing.1.4.1.min.js'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/easy-fancybox/js/jquery.mousewheel.3.1.13.min.js'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-includes/js/wp-embed.min.js?ver=1ef8fcd0faf53d1b5dbc13a5978d22bb'></script>
+            <script type='text/javascript' src='https://my-internal.server:9999//wp-content/plugins/shariff/js/shariff.min.js?ver=4.5.1'></script>
+            <!--[if lte IE 8]>
+            <script type="text/javascript">
+                document.body.className = document.body.className.replace( /(^|\s)(no-)?customize-support(?=\s|$)/, '' ) + ' no-customize-support';
+            </script>
+            <![endif]-->
+            <!--[if gte IE 9]><!-->
+            <script type="text/javascript">
+                (function() {
+                    var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
+
+                    request = true;
+
+                    b[c] = b[c].replace( rcs, ' ' );
+                    // The customizer requires postMessage and CORS (if the site is cross domain)
+                    b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
+                }());
+            </script>
+            <!--<![endif]-->
+            <div id="wpadminbar" class="nojq nojs">
+                <a class="screen-reader-shortcut" href="#wp-toolbar" tabindex="1">Zur Werkzeugleiste springen</a>
+                <div class="quicklinks" id="wp-toolbar" role="navigation" aria-label="Werkzeugleiste" tabindex="0">
+                    <ul id="wp-admin-bar-root-default" class="ab-top-menu">
+                        <li id="wp-admin-bar-wp-logo" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/about.php"><span class="ab-icon"></span><span class="screen-reader-text">Über WordPress</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wp-logo-default" class="ab-submenu">
+                            <li id="wp-admin-bar-about"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/about.php">Über WordPress</a>		</li></ul><ul id="wp-admin-bar-wp-logo-external" class="ab-sub-secondary ab-submenu">
+                            <li id="wp-admin-bar-wporg"><a class="ab-item" href="https://de.wordpress.org/">WordPress.org</a>		</li>
+                            <li id="wp-admin-bar-documentation"><a class="ab-item" href="https://codex.wordpress.org/">Dokumentation</a>		</li>
+                            <li id="wp-admin-bar-support-forums"><a class="ab-item" href="https://de.wordpress.org/hilfe/">Support-Foren</a>		</li>
+                            <li id="wp-admin-bar-feedback"><a class="ab-item" href="https://wordpress.org/support/forum/requests-and-feedback">Feedback</a>		</li></ul></div>		</li>
+                        <li id="wp-admin-bar-wp-statistic-menu" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/admin.php?page=wps_overview_page"><span class="ab-icon"></span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wp-statistic-menu-default" class="ab-submenu">
+                            <li id="wp-admin-bar-wp-statistics-menu-useronline"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wps_online_page">Besucher online: 0</a>		</li>
+                            <li id="wp-admin-bar-wp-statistics-menu-todayvisitor"><div class="ab-item ab-empty-item">Besucher heute: 139</div>		</li>
+                            <li id="wp-admin-bar-wp-statistics-menu-todayvisit"><div class="ab-item ab-empty-item">Aufrufe heute: 1571</div>		</li>
+                            <li id="wp-admin-bar-wp-statistics-menu-yesterdayvisitor"><div class="ab-item ab-empty-item">Besucher gestern: 351</div>		</li>
+                            <li id="wp-admin-bar-wp-statistics-menu-yesterdayvisit"><div class="ab-item ab-empty-item">Aufrufe gestern: 4428</div>		</li>
+                            <li id="wp-admin-bar-wp-statistics-menu-viewstats"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wps_overview_page">Statistiken</a>		</li></ul></div>		</li>
+                        <li id="wp-admin-bar-site-name" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/">nerdblog</a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-site-name-default" class="ab-submenu">
+                            <li id="wp-admin-bar-dashboard"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/">Dashboard</a>		</li></ul><ul id="wp-admin-bar-appearance" class="ab-submenu">
+                            <li id="wp-admin-bar-themes"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/themes.php">Themes</a>		</li>
+                            <li id="wp-admin-bar-widgets"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/widgets.php">Widgets</a>		</li>
+                            <li id="wp-admin-bar-menus"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/nav-menus.php">Menüs</a>		</li>
+                            <li id="wp-admin-bar-header" class="hide-if-customize"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/themes.php?page=custom-header">Header</a>		</li></ul></div>		</li>
+                        <li id="wp-admin-bar-customize" class="hide-if-no-customize"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/customize.php?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F">Customizer</a>		</li>
+                        <li id="wp-admin-bar-comments"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/edit-comments.php"><span class="ab-icon"></span><span class="ab-label awaiting-mod pending-count count-0" aria-hidden="true">0</span><span class="screen-reader-text">0 Kommentare warten auf Freischaltung</span></a>		</li>
+                        <li id="wp-admin-bar-new-content" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/post-new.php"><span class="ab-icon"></span><span class="ab-label">Neu</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-new-content-default" class="ab-submenu">
+                            <li id="wp-admin-bar-new-post"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/post-new.php">Beitrag</a>		</li>
+                            <li id="wp-admin-bar-new-media"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/media-new.php">Medien</a>		</li>
+                            <li id="wp-admin-bar-new-page"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/post-new.php?post_type=page">Seite</a>		</li>
+                            <li id="wp-admin-bar-new-user"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/user-new.php">Benutzer</a>		</li></ul></div>		</li>
+                        <li id="wp-admin-bar-edit"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/post.php?post=18182&#038;action=edit">Beitrag bearbeiten</a>		</li>
+                        <li id="wp-admin-bar-wpseo-menu" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_dashboard"><div id="yoast-ab-icon" class="ab-item yoast-logo svg"><span class="screen-reader-text">SEO</span></div><div class="wpseo-score-icon adminbar-seo-score ok"><span class="adminbar-seo-score-text screen-reader-text"></span></div></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wpseo-menu-default" class="ab-submenu">
+                            <li id="wp-admin-bar-wpseo-configuration-wizard"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_configurator">Konfigurations-Assistent</a>		</li>
+                            <li id="wp-admin-bar-wpseo-kwresearch" class="menupop"><div class="ab-item ab-empty-item" tabindex="0" aria-haspopup="true">Keyword-Recherche</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wpseo-kwresearch-default" class="ab-submenu">
+                                <li id="wp-admin-bar-wpseo-kwresearchtraining"><a class="ab-item" href="https://yoa.st/wp-admin-bar?php_version=7.2.4&#038;platform=wordpress&#038;platform_version=4.9.8&#038;software=free&#038;software_version=9.1&#038;role=administrator&#038;days_active=779" target="_blank">Keyword research training</a>		</li>
+                                <li id="wp-admin-bar-wpseo-adwordsexternal"><a class="ab-item" href="https://yoa.st/keywordplanner" target="_blank">Google Ads</a>		</li>
+                                <li id="wp-admin-bar-wpseo-googleinsights"><a class="ab-item" href="https://yoa.st/google-trends#q=PlantUML" target="_blank">Google Trends</a>		</li></ul></div>		</li>
+                            <li id="wp-admin-bar-wpseo-analysis" class="menupop"><div class="ab-item ab-empty-item" tabindex="0" aria-haspopup="true">Diese Seite analysieren </div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wpseo-analysis-default" class="ab-submenu">
+                                <li id="wp-admin-bar-wpseo-inlinks"><a class="ab-item" href="https://search.google.com/search-console/links/drilldown?resource_id=https%3A%2F%2Fnerdblog.steinkopf.net&#038;type=EXTERNAL&#038;target=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&#038;domain=" target="_blank">Links zu dieser URL überprüfen</a>		</li>
+                                <li id="wp-admin-bar-wpseo-kwdensity"><a class="ab-item" href="http://www.zippy.co.uk/keyworddensity/index.php?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F&#038;keyword=PlantUML" target="_blank">Check Keyphrase Density</a>		</li>
+                                <li id="wp-admin-bar-wpseo-cache"><a class="ab-item" href="//webcache.googleusercontent.com/search?strip=1&#038;q=cache:https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Google-Cache prüfen</a>		</li>
+                                <li id="wp-admin-bar-wpseo-header"><a class="ab-item" href="//quixapp.com/headers/?r=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Header prüfen</a>		</li>
+                                <li id="wp-admin-bar-wpseo-structureddata"><a class="ab-item" href="https://search.google.com/structured-data/testing-tool#url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Google Test für strukturierte Daten</a>		</li>
+                                <li id="wp-admin-bar-wpseo-facebookdebug"><a class="ab-item" href="//developers.facebook.com/tools/debug/og/object?q=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Facebook Debugger</a>		</li>
+                                <li id="wp-admin-bar-wpseo-pinterestvalidator"><a class="ab-item" href="https://developers.pinterest.com/tools/url-debugger/?link=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Pinterests Rich-Pins-Validator</a>		</li>
+                                <li id="wp-admin-bar-wpseo-htmlvalidation"><a class="ab-item" href="//validator.w3.org/check?uri=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">HTML-Validator</a>		</li>
+                                <li id="wp-admin-bar-wpseo-cssvalidation"><a class="ab-item" href="//jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">CSS-Validator</a>		</li>
+                                <li id="wp-admin-bar-wpseo-pagespeed"><a class="ab-item" href="//developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Google-Page-Speed-Test</a>		</li>
+                                <li id="wp-admin-bar-wpseo-google-mobile-friendly"><a class="ab-item" href="https://www.google.com/webmasters/tools/mobile-friendly/?url=https%3A%2F%2Fnerdblog.steinkopf.net%2F2018%2F11%2Fplanttext-diagramme%2F" target="_blank">Mobile-Friendly-Test</a>		</li></ul></div>		</li>
+                            <li id="wp-admin-bar-wpseo-settings" class="menupop"><div class="ab-item ab-empty-item" tabindex="0" aria-haspopup="true">SEO-Einstellungen</div><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wpseo-settings-default" class="ab-submenu">
+                                <li id="wp-admin-bar-wpseo-general"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_dashboard">Allgemein</a>		</li>
+                                <li id="wp-admin-bar-wpseo-titles"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_titles">Darstellung in der Suche</a>		</li>
+                                <li id="wp-admin-bar-wpseo-search-console"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_search_console">Suchkonsole</a>		</li>
+                                <li id="wp-admin-bar-wpseo-social"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_social">Social</a>		</li>
+                                <li id="wp-admin-bar-wpseo-tools"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_tools">Werkzeuge</a>		</li>
+                                <li id="wp-admin-bar-wpseo-licenses"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=wpseo_licenses">Premium</a>		</li></ul></div>		</li></ul></div>		</li>
+                        <li id="wp-admin-bar-wp_mail_bank" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_email_configuration"><img style="vertical-align:middle; margin-right:3px;" src=https://my-internal.server:9999//wp-content/plugins/wp-mail-bank/assets/global/img/icon.png><span class="ab-label">WP Mail Bank</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-wp_mail_bank-default" class="ab-submenu">
+                            <li id="wp-admin-bar-email_configuration_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_email_configuration">Setup Wizard</a>		</li>
+                            <li id="wp-admin-bar-test_email_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_test_email">Send Test Email</a>		</li>
+                            <li id="wp-admin-bar-connectivity_test_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_connectivity_test">Connectivity Test</a>		</li>
+                            <li id="wp-admin-bar-email_logs_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_email_logs">Email Reports</a>		</li>
+                            <li id="wp-admin-bar-notifications_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_notifications">Notifications</a>		</li>
+                            <li id="wp-admin-bar-general_settings_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_settings">General Settings</a>		</li>
+                            <li id="wp-admin-bar-roles_and_capabilities_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_roles_and_capabilities">Roles & Capabilities</a>		</li>
+                            <li id="wp-admin-bar-recommended_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_upgrade_now">Upgrade Now</a>		</li>
+                            <li id="wp-admin-bar-system_information_mail_bank"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/admin.php?page=mb_system_information">System Information</a>		</li></ul></div>		</li></ul><ul id="wp-admin-bar-top-secondary" class="ab-top-secondary ab-top-menu">
+                    <li id="wp-admin-bar-search" class="admin-bar-search"><div class="ab-item ab-empty-item" tabindex="-1"><form action="https://my-internal.server:9999//" method="get" id="adminbarsearch"><input class="adminbar-input" name="s" id="adminbar-search" type="text" value="" maxlength="150" /><label for="adminbar-search" class="screen-reader-text">Suchen</label><input type="submit" class="adminbar-button" value="Suchen"/></form></div>		</li>
+                    <li id="wp-admin-bar-my-account" class="menupop"><a class="ab-item" aria-haspopup="true" href="https://my-internal.server:9999//wp-admin/profile.php">Willkommen, <span class="display-name">Dirk Steinkopf</span></a><div class="ab-sub-wrapper"><ul id="wp-admin-bar-user-actions" class="ab-submenu">
+                        <li id="wp-admin-bar-user-info"><a class="ab-item" tabindex="-1" href="https://my-internal.server:9999//wp-admin/profile.php"><span class='display-name'>Dirk Steinkopf</span><span class='username'>stk</span></a>		</li>
+                        <li id="wp-admin-bar-edit-profile"><a class="ab-item" href="https://my-internal.server:9999//wp-admin/profile.php">Profil bearbeiten</a>		</li>
+                        <li id="wp-admin-bar-logout"><a class="ab-item" href="https://my-internal.server:9999//wp-login.php?action=logout&#038;_wpnonce=94fc97ba94">Abmelden</a>		</li></ul></div>		</li></ul>			</div>
+                <a class="screen-reader-shortcut" href="https://my-internal.server:9999//wp-login.php?action=logout&#038;_wpnonce=94fc97ba94">Abmelden</a>
+            </div>
+
+        </div>
+
+    </footer><!-- #colophon -->
+
+</div><!-- #page -->
+
+<!--[if lte IE 8]>
+<script type="text/javascript">
+    document.body.className = document.body.className.replace( /(^|\s)(no-)?customize-support(?=\s|$)/, '' ) + ' no-customize-support';
+</script>
+<![endif]-->
+<!--[if gte IE 9]><!-->
+<script type="text/javascript">
+    (function() {
+        var request, b = document.body, c = 'className', cs = 'customize-support', rcs = new RegExp('(^|\\s+)(no-)?'+cs+'(\\s+|$)');
+
+        request = true;
+
+        b[c] = b[c].replace( rcs, ' ' );
+        // The customizer requires postMessage and CORS (if the site is cross domain)
+        b[c] += ( window.postMessage && request ? ' ' : ' no-' ) + cs;
+    }());
+</script>
+<!--<![endif]-->
+
+</body>
+</html>
