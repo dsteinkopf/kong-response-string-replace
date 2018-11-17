@@ -1,6 +1,9 @@
 local _M = {}
 
 function _M.is_content_type(actual_full_content_type, content_types)
+    if content_types == nil or actual_full_content_type == nil then
+        return false
+    end
     -- split off charset
     local actual_base_content_type, _ = string.match(actual_full_content_type,  "^%s*(%S+)%s*;(.*)$")
     actual_base_content_type = actual_base_content_type or actual_full_content_type

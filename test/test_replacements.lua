@@ -93,6 +93,9 @@ function TestReplacements.test_is_content_type()
     luaunit.assertTrue(replacements.is_content_type(" abc ; xyz", content_types))
     luaunit.assertTrue(replacements.is_content_type("def;xyz", content_types))
 
+    luaunit.assertFalse(replacements.is_content_type(nil, nil))
+    luaunit.assertFalse(replacements.is_content_type(nil, content_types))
+    luaunit.assertFalse(replacements.is_content_type("aaa", nil))
 end
 
 os.exit( luaunit.LuaUnit.run() )
