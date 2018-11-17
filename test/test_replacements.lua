@@ -33,8 +33,10 @@ function TestReplacements:test_tansform_headers()
     }
 
     replacements.tansform_headers(headers, header_replace_patterns)
-
     luaunit.assertTrue(helper.deepcompare(headers, transformed_headers_expected, true))
+
+    luaunit.assertEquals(replacements.tansform_headers(nil, nil), nil)
+    luaunit.assertEquals(replacements.tansform_headers(headers, nil), headers)
 end
 
 function TestReplacements:test_matches_one_of()
@@ -59,6 +61,8 @@ function TestReplacements:test_matches_one_of()
     luaunit.assertTrue(replacements.matches_one_of(uri3, uri_patterns_one))
     luaunit.assertTrue(replacements.matches_one_of(uri3, uri_patterns_many))
 
+    luaunit.assertFalse(replacements.matches_one_of(uri1, nil))
+
 end
 
 function TestReplacements:test_transform_body()
@@ -71,6 +75,7 @@ function TestReplacements:test_transform_body()
 
     luaunit.assertEquals(body, replacements.transform_body(replace_patterns_empty, body))
     luaunit.assertEquals(body_transformed_expected, replacements.transform_body(replace_patterns, body))
+    luaunit.assertEquals(body, replacements.transform_body(nil, body))
 end
 
 function TestReplacements.test_is_content_type()

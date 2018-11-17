@@ -27,6 +27,9 @@ local function iter(replace_patterns)
 end
 
 function _M.transform_body(replace_patterns, body)
+    if replace_patterns == nil then
+        return body
+    end
     for _, pattern, replace in iter(replace_patterns) do
         -- kong.log("pattern=", pattern, ", replace=", replace)
         body = body:gsub(pattern, replace)
@@ -35,6 +38,9 @@ function _M.transform_body(replace_patterns, body)
 end
 
 function _M.matches_one_of(uri, uri_patterns)
+    if uri_patterns == nil then
+        return false
+    end
     for _, uri_pattern in ipairs(uri_patterns) do
         if string.find(uri, uri_pattern) then
             return true
@@ -45,6 +51,9 @@ function _M.matches_one_of(uri, uri_patterns)
 end
 
 function _M.tansform_headers(headers, header_replace_patterns)
+    if header_replace_patterns == nil or headers == nil then
+        return headers
+    end
     for _, header_replace_pattern in ipairs(header_replace_patterns) do
         local header_name, pattern, replace = header_replace_pattern:match("^(.+):(.+)###(.*)$")
         if headers[header_name] then
