@@ -2,7 +2,7 @@ local _M = {}
 
 function _M.is_content_type(actual_full_content_type, content_types)
     -- split off charset
-    local actual_base_content_type, _ = string.match(actual_full_content_type,  "^(.+)%s*;(.*)$")
+    local actual_base_content_type, _ = string.match(actual_full_content_type,  "^%s*(%S+)%s*;(.*)$")
     actual_base_content_type = actual_base_content_type or actual_full_content_type
     for _, content_type in ipairs(content_types) do
         if actual_base_content_type == content_type then
@@ -47,8 +47,15 @@ end
 function _M.tansform_headers(headers, header_replace_patterns)
     for _, header_replace_pattern in ipairs(header_replace_patterns) do
         local header_name, pattern, replace = header_replace_pattern:match("^(.+):(.+)###(.*)$")
-        if ngx.header[header_name] then
-            ngx.header[header_name] = string.gsub(ngx.header[header_name], pattern, replace)
+        if headers[header_name] then
+            if type(headers[header_name]) == "string" then
+                headers[header_name] = string.gsub(headers[header_name], pattern, replace)
+            else
+                local header_arr = headers[header_name]
+                for index, value in ipairs(header_arr) do
+                    header_arr[index] = string.gsub(value, pattern, replace)
+                end
+            end
         end
     end
 end
