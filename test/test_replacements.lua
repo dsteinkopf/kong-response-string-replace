@@ -15,7 +15,8 @@ function TestReplacements:test_tansform_headers()
             "v21bla",
             "v22bla"
         },
-        h3="v3"
+        h3="v3", -- headers are mode case insensitive by the system
+        location="http://internal-server.abc:1234/dir/"
     }
 
     local transformed_headers_expected = {
@@ -24,12 +25,14 @@ function TestReplacements:test_tansform_headers()
             "v2new1bla",
             "v2new2bla"
         },
-        h3="v3new"
+        h3="v3new",
+        location="https://external-server.tld/"
     }
 
     local header_replace_patterns = {
         "h2:v2###v2new",
-        "h3:v3###v3new"
+        "h3:v3###v3new",
+        "location:http://internal%-server%.abc:1234/dir/###https://external-server.tld/"
     }
 
     replacements.tansform_headers(headers, header_replace_patterns)

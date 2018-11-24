@@ -58,7 +58,7 @@ function _M.tansform_headers(headers, header_replace_patterns)
         return headers
     end
     for _, header_replace_pattern in ipairs(header_replace_patterns) do
-        local header_name, pattern, replace = header_replace_pattern:match("^(.+):(.+)###(.*)$")
+        local header_name, pattern, replace = header_replace_pattern:match("^([^:]+):(.+)###(.*)$")
         if headers[header_name] then
             if type(headers[header_name]) == "string" then
                 headers[header_name] = string.gsub(headers[header_name], pattern, replace)

@@ -1,6 +1,6 @@
 # kong-response-string-replace
 
-A Kong plugin for string replacements in the response stream.
+A Kong plugin for string replacements in the response stream and response headers.
 This could be useful e.g. to replace internal by external URLs.
 
 ## Installation
@@ -44,14 +44,14 @@ So it is handled after ip-restriction, bot-detection, cors and after [kong-http-
 
 * `content_types`: 
     * _type_: list of strings
-    * _default value_: empty
+    * _default value_: empty (= no replacement)
     * _example_: `text/html`
     * List of content types the replacements should be done on. 
         Exact match (not pattern patch) is done without charset part of content type.
         
 * `uri_patterns`: 
     * _type_: list of strings
-    * _default value_: empty
+    * _default value_: empty (= no replacement)
     * _example_: `%.html$`
     * List of patterns that match URIs of requests where the replacements shall be done.
      
