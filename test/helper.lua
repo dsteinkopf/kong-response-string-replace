@@ -21,4 +21,11 @@ function _M.deepcompare(t1,t2,ignore_mt)
     return true
 end
 
+function _M.readAll(file)
+    local f = assert(io.open(file, "rb"))
+    local content = f:read("*all")
+    f:close()
+    return content
+end
+
 return _M

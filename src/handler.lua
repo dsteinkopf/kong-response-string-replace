@@ -1,10 +1,13 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local replacements = require "kong.plugins.kong-response-string-replace.replacements"
+local compression = require "kong.plugins.kong-response-string-replace.compression"
 
 local is_content_type = replacements.is_content_type
 local transform_body = replacements.transform_body
 local matches_one_of = replacements.matches_one_of
 local tansform_headers = replacements.tansform_headers
+local decompress = compression.decompress
+local compress = compression.compress
 
 local HttpFilterHandler = BasePlugin:extend()
 
@@ -24,6 +27,7 @@ function HttpFilterHandler:header_filter(conf)
 
   local content_type_matches = is_content_type(ngx.header["content-type"], conf.content_types)
   local uri_matches = matches_one_of(ngx.var.uri, conf.uri_patterns)
+  ngx.ctx.is_gzip = (ngx.header["content-encoding"] == "gzip")
 
   if content_type_matches or uri_matches then
     ngx.header["content-length"] = nil
@@ -32,6 +36,7 @@ function HttpFilterHandler:header_filter(conf)
   end
 end
 
+-- Executed for each chunk of the response body received from the upstream service
 function HttpFilterHandler:body_filter(conf)
   HttpFilterHandler.super.body_filter(self)
 
@@ -43,7 +48,17 @@ function HttpFilterHandler:body_filter(conf)
     ctx.rt_body_chunk_number = ctx.rt_body_chunk_number or 1
 
     if eof then
-      local transformed_body = transform_body(conf.body_replace_patterns, table.concat(ctx.rt_body_chunks))
+      local body = table.concat(ctx.rt_body_chunks)
+      if ngx.ctx.is_gzip then
+        body = decompress(body)
+      end
+
+      local transformed_body = transform_body(conf.body_replace_patterns, body)
+
+      if ngx.ctx.is_gzip then
+        transformed_body = compress(transformed_body)
+      end
+
       ngx.arg[1] = transformed_body
     else
       ctx.rt_body_chunks[ctx.rt_body_chunk_number] = chunk

@@ -1,5 +1,5 @@
 package = "kong-response-string-replace"
-version = "0.14.1-0"
+version = "1.0.1-0"
 source = {
     url = "git://github.com/dsteinkopf/kong-response-string-replace",
     branch = "master"
@@ -13,6 +13,7 @@ description = {
     license = "MIT"
 }
 dependencies = {
+    "lua-zlib ~> 1.2"
 }
 build = {
     type = "builtin",
@@ -20,5 +21,6 @@ build = {
     ["kong.plugins.kong-response-string-replace.handler"] = "src/handler.lua",
     ["kong.plugins.kong-response-string-replace.schema"] = "src/schema.lua",
     ["kong.plugins.kong-response-string-replace.replacements"] = "src/replacements.lua",
+    ["kong.plugins.kong-response-string-replace.compression"] = "src/compression.lua",
     }
 }

@@ -5,6 +5,9 @@ local helper = require "test.helper"
 luaunit = require('luaunit')
 
 
+-- lua test/test_replacements.lua -v
+
+
 TestReplacements = {} -- class
 
 function TestReplacements:test_tansform_headers()
