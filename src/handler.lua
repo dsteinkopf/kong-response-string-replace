@@ -75,7 +75,7 @@ function HttpFilterHandler:body_filter(conf)
       if ngx.ctx.is_gzip then
         transformed_body = compress(transformed_body)
       elseif ngx.ctx.is_brotli then
-        body = brotli_encoder:compress(body)
+        transformed_body = brotli_encoder:compress(transformed_body)
       end
 
       ngx.arg[1] = transformed_body
