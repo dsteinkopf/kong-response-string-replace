@@ -1,8 +1,8 @@
 local BasePlugin = require "kong.plugins.base_plugin"
 local replacements = require "kong.plugins.kong-response-string-replace.replacements"
 local compression = require "kong.plugins.kong-response-string-replace.compression"
-local brotlienc = require "resty.brotli.encoder"
-local brotlidec = require "resty.brotli.decoder"
+local brotlienc = require "brotli.encoder"
+local brotlidec = require "brotli.decoder"
 
 
 local is_content_type = replacements.is_content_type
