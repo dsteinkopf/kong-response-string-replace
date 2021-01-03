@@ -24,8 +24,9 @@ Run kong reload or start and add the plugin as normal.
 Derive your kong images `FROM kong` and add something like
 ```
 FROM kong
-
-RUN apk update && apk add git
+USER root
+RUN apk update && apk add git zlib zlib-dev libc-dev gcc
+RUN git config --global advice.detachedHead false
 RUN git clone https://github.com/dsteinkopf/kong-response-string-replace
 RUN cd kong-response-string-replace && luarocks install *.rockspec
 ```
