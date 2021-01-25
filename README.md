@@ -31,6 +31,13 @@ RUN git clone https://github.com/dsteinkopf/kong-response-string-replace
 RUN cd kong-response-string-replace && luarocks install *.rockspec
 ```
 
+Depending on target distribution, you may need to install shared libs for `botli` lua module. For example, botli lua module and shared libs can be installed like this:
+```
+RUN apk update && apk add brotli libbrotli1 libbrotli-dev
+RUN luarocks install luajit-brotli
+```
+**_NOTE:_** This case was was experienced using 'bitnami/kong:2.1.4' kong bundle so it may be different for other distributions/bundles 
+
 Then put `KONG_CUSTOM_PLUGINS: kong-response-string-replace` into your environment when starting the kong container.
 
 ## Info
