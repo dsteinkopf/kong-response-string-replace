@@ -18,12 +18,33 @@ local function check_for_header_replace_pattern(value)
     return true
 end
 
+-- see https://docs.konghq.com/gateway/3.4.x/plugin-development/configuration/
+-- see https://github.com/Kong/kong-plugin/blob/master/kong/plugins/myplugin/schema.lua
+
+local typedefs = require "kong.db.schema.typedefs"
+
+
 return {
-  no_consumer = true,
+  name = "kong-response-string-replace",
   fields = {
-      content_types = {type = "array", default = {}},
-      uri_patterns = {type = "array", default = {}},
-      body_replace_patterns = {type = "array", default = {}, func = check_for_body_replace_pattern },
-      header_replace_patterns = {type = "array", default = {}, func = check_for_header_replace_pattern }
-  }
+    {
+      -- this plugin will only be applied to Services or Routes
+      consumer = typedefs.no_consumer
+    },
+    {
+      -- this plugin will only run within Nginx HTTP module
+      protocols = typedefs.protocols_http
+    },
+    {
+      config = {
+        type = "record",
+        fields = {
+          { content_types = {type = "array", default = {}, elements = { type = "string" }, }, },
+          { uri_patterns = {type = "array", default = {}, elements = { type = "string" }, }, },
+          { body_replace_patterns = {type = "array", default = {}, elements = { type = "string" }, custom_validator = check_for_body_replace_pattern }, },
+          { header_replace_patterns = {type = "array", default = {}, elements = { type = "string" }, custom_validator = check_for_header_replace_pattern } },
+        },
+      },
+    },
+  },
 }

@@ -1,8 +1,16 @@
-local BasePlugin = require "kong.plugins.base_plugin"
 local replacements = require "kong.plugins.kong-response-string-replace.replacements"
 local compression = require "kong.plugins.kong-response-string-replace.compression"
 local brotlienc = require "brotli.encoder"
 local brotlidec = require "brotli.decoder"
+
+local HttpFilterHandler = {
+  -- handle redirect after ip-restriction, bot-detection, cors - but before jwt and other authentication plugins
+  -- see https://docs.konghq.com/0.14.x/plugin-development/custom-logic/
+  PRIORITY = 1250,
+  VERSION = "1.1",
+}
+
+local kong = kong
 
 
 local is_content_type = replacements.is_content_type
@@ -15,27 +23,8 @@ local brotli_encoder = brotlienc:new()
 local brotli_decoder = brotlidec:new()
 
 
-local HttpFilterHandler = BasePlugin:extend()
-
-
--- handle redirect after ip-restriction, bot-detection, cors - but before jwt and other authentication plugins
--- see https://docs.konghq.com/0.14.x/plugin-development/custom-logic/
-HttpFilterHandler.PRIORITY = 1250
-
-
-function HttpFilterHandler:new()
-  HttpFilterHandler.super.new(self, "kong-response-string-replace")
-end
-
--- Executed for every request from a client and before it is being proxied to the upstream service
-function HttpFilterHandler:access(conf)
-  HttpFilterHandler.super.access(self)
-end
-
-
   -- Executed when all response headers bytes have been received from the upstream service
 function HttpFilterHandler:header_filter(conf)
-  HttpFilterHandler.super.header_filter(self)
 
   local content_type_matches = is_content_type(ngx.header["content-type"], conf.content_types)
   local uri_matches = matches_one_of(ngx.var.uri, conf.uri_patterns)
@@ -53,8 +42,6 @@ end
 
 -- Executed for each chunk of the response body received from the upstream service
 function HttpFilterHandler:body_filter(conf)
-  HttpFilterHandler.super.body_filter(self)
-
   if ngx.ctx.do_transformation then
     local chunk, eof = ngx.arg[1], ngx.arg[2]
     local ctx = ngx.ctx
